@@ -130,7 +130,7 @@
       if (!wall) return;
       const photos = await fetchPhotos(0);
       wall.innerHTML = photos.map((photo, i) => `
-<button type="button" class="photo-wall__item reveal" data-reveal-group="photo" data-src="${escapeHtml(photo.src)}" data-caption="${escapeHtml(photo.caption)}">
+<button type="button" class="photo-wall__item reveal" data-reveal-group="photo" data-src="${escapeHtml(photo.src)}" data-caption="${escapeHtml(photo.caption)}" aria-label="放大檢視：${escapeHtml(photo.caption)}">
   <img src="${escapeHtml(photo.thumb)}" alt="${escapeHtml(photo.caption)}" loading="lazy">
 </button>`).join('');
 
