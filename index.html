@@ -160,6 +160,9 @@
       <div class="news-grid" id="news-grid" data-reveal-group="news">
         <!-- renderNews() populates this from fetchNews() -->
       </div>
+      <div style="text-align: center; margin-top: 32px;">
+        <button id="news-view-all" class="news-view-all-btn" style="display: none;">查看全部 →</button>
+      </div>
     </div>
   </section>
 
@@ -285,8 +288,8 @@
           <p class="team-card__specialty">內外科護理・急重症護理・老人護理・護理行政・認知訓練・3D列印・專科護理師</p>
         </div>
 
-        <a class="wip team-card--wip reveal" data-reveal-group="team" href="#contact">
-          成員名單整理中——歡迎加入我們
+        <a class="wip team-card--wip reveal" data-reveal-group="team" href="members.html">
+          查看全部成員 →
         </a>
       </div>
     </div>
@@ -391,25 +394,54 @@
       "公告": "chip--announce"
     };
 
+    function escapeHtml(str) {
+      if (!str) return "";
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
     function renderNewsCard(item) {
       const chipClass = NEWS_CHIP_CLASS[item.category] || "chip--announce";
+      const escapedDate = escapeHtml(item.date);
+      const escapedCategory = escapeHtml(item.category);
+      const escapedContent = escapeHtml(item.content);
       return `
 <div class="card news-card reveal" data-reveal-group="news">
   <div class="news-card__meta">
-    <span class="news-card__date mono-en">${item.date}</span>
-    <span class="chip ${chipClass}">${item.category}</span>
+    <span class="news-card__date mono-en">${escapedDate}</span>
+    <span class="chip ${chipClass}">${escapedCategory}</span>
   </div>
-  <p class="news-card__content">${item.content}</p>
+  <p class="news-card__content">${escapedContent}</p>
 </div>`;
     }
+
+    let allNews = [];
+    let newsExpanded = false;
 
     async function renderNews() {
       const grid = document.getElementById("news-grid");
       if (!grid) return;
-      const news = await fetchNews();
-      const top3 = news.slice(0, 3);
+      allNews = await fetchNews();
+      const top3 = allNews.slice(0, 3);
       grid.innerHTML = top3.map(renderNewsCard).join("");
       initReveal();
+
+      const viewAllBtn = document.getElementById("news-view-all");
+      if (viewAllBtn) {
+        viewAllBtn.style.display = allNews.length > 3 ? "inline-block" : "none";
+        viewAllBtn.addEventListener("click", () => {
+          if (!newsExpanded) {
+            grid.innerHTML = allNews.map(renderNewsCard).join("");
+            initReveal();
+            viewAllBtn.style.display = "none";
+            newsExpanded = true;
+          }
+        });
+      }
     }
 
     function fillContactStrings() {
