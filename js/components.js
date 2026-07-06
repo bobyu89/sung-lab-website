@@ -9,7 +9,7 @@
    Gradient: #FF79BC -> #FFA042
    -------------------------------------------------------------------------- */
 const LOGO_SVG = `
-<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${'護理創新及專科訓練研究室 Logo'}">
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="護理創新及專科訓練研究室 Logo">
   <defs>
     <linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#FF79BC"/>
