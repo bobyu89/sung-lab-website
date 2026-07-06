@@ -11,7 +11,7 @@ const SITE = {
   dept: "國防醫學大學護理學院",
   email: "sungcm@mail.ndmutsgh.edu.tw",
   phone: "02-87923100 分機 18765",
-  stats: { publications: 23, projects: 12, areas: 4, members: null } // members=null → 顯示「招募中」
+  stats: { publications: 23, projects: 12, areas: 4, members: 2 } // members=null → 顯示「招募中」
 };
 
 /* ==========================================================================
