@@ -810,3 +810,284 @@ body.lightbox-open {
     grid-template-columns: 1fr;
   }
 }
+
+/* --------------------------------------------------------------------------
+   14. News grid (最新消息)
+   -------------------------------------------------------------------------- */
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.news-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.news-card__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.news-card__date {
+  color: var(--gray);
+  font-size: 0.78rem;
+}
+
+.news-card__content {
+  margin: 0;
+  color: var(--ink);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Chip color variants — category mapping (all keep dark text) */
+.chip--honor {
+  background: var(--pink-bg);
+  color: var(--pink-deep);
+}
+
+.chip--pub {
+  background: #FFE9D2;
+  color: var(--orange-deep);
+}
+
+.chip--event {
+  background: var(--peach);
+  color: var(--pink-deep);
+}
+
+.chip--announce {
+  background: transparent;
+  color: var(--gray);
+  border: 1.5px solid var(--gray);
+}
+
+@media (max-width: 1023px) {
+  .news-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 599px) {
+  .news-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   15. Metric grid (研究成果總覽)
+   -------------------------------------------------------------------------- */
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.metric-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+}
+
+.metric-card__icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--peach);
+  margin-bottom: 8px;
+}
+
+.metric-card__icon svg {
+  width: 26px;
+  height: 26px;
+}
+
+.metric-card__number {
+  font-size: 2.25rem;
+  font-weight: 900;
+  color: var(--ink);
+  line-height: 1.1;
+}
+
+.metric-card__number--text {
+  font-size: 1.35rem;
+  color: var(--pink-deep);
+}
+
+.metric-card__label {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.metric-card__label-en {
+  color: var(--gray);
+}
+
+@media (max-width: 1023px) {
+  .metric-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 599px) {
+  .metric-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   16. Team grid (研究團隊)
+   -------------------------------------------------------------------------- */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.team-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.team-card__avatar {
+  width: 72px;
+  height: 72px;
+  font-size: 1.4rem;
+}
+
+.team-card__name {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.team-card__role {
+  margin: 0;
+  color: var(--pink-deep);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.team-card__specialty {
+  margin: 0;
+  color: var(--gray);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.team-card--wip {
+  text-decoration: none;
+}
+
+@media (max-width: 767px) {
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   17. Contact section (聯絡我們)
+   -------------------------------------------------------------------------- */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-field label {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.form-required {
+  color: var(--orange-deep);
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: var(--ink);
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1.5px solid rgba(107, 114, 128, 0.3);
+  background: var(--white);
+  resize: vertical;
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  outline: 2px solid var(--pink);
+  outline-offset: 1px;
+}
+
+.form-error {
+  margin: 0;
+  color: var(--orange-deep);
+  font-size: 0.82rem;
+}
+
+.form-error[hidden] {
+  display: none;
+}
+
+.contact-info-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contact-info-card__title {
+  margin: 0 0 8px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.contact-info-card__text {
+  margin: 0;
+  color: var(--ink);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 899px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}

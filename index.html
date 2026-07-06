@@ -126,15 +126,360 @@
     </div>
   </section>
 
-  <section id="contact"></section>
+  <div class="ecg-divider"></div>
+
+  <!-- ==========================================================================
+       最新消息 (Latest News)
+       ========================================================================== -->
+  <section class="section section--pink">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="section-header__title">
+          <span class="section-header__icon">
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <linearGradient id="news-logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#FF79BC"/>
+                  <stop offset="100%" stop-color="#FFA042"/>
+                </linearGradient>
+              </defs>
+              <g fill="url(#news-logo-grad)">
+                <rect x="24" y="4" width="16" height="24" rx="8"/>
+                <rect x="24" y="36" width="16" height="24" rx="8"/>
+                <rect x="4" y="24" width="24" height="16" rx="8"/>
+                <rect x="36" y="24" width="24" height="16" rx="8"/>
+                <rect x="24" y="24" width="16" height="16" rx="6"/>
+              </g>
+            </svg>
+          </span>
+          最新消息
+        </h2>
+        <span class="mono-en">LATEST NEWS</span>
+      </div>
+
+      <div class="news-grid" id="news-grid" data-reveal-group="news">
+        <!-- renderNews() populates this from fetchNews() -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       研究成果總覽 (Our Impact)
+       ========================================================================== -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="section-header__title">
+          <span class="section-header__icon">
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <linearGradient id="impact-logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#FF79BC"/>
+                  <stop offset="100%" stop-color="#FFA042"/>
+                </linearGradient>
+              </defs>
+              <g fill="url(#impact-logo-grad)">
+                <rect x="24" y="4" width="16" height="24" rx="8"/>
+                <rect x="24" y="36" width="16" height="24" rx="8"/>
+                <rect x="4" y="24" width="24" height="16" rx="8"/>
+                <rect x="36" y="24" width="24" height="16" rx="8"/>
+                <rect x="24" y="24" width="16" height="16" rx="6"/>
+              </g>
+            </svg>
+          </span>
+          研究成果總覽
+        </h2>
+        <span class="mono-en">OUR IMPACT</span>
+      </div>
+
+      <div class="metric-grid">
+        <div class="card metric-card reveal" data-reveal-group="metric">
+          <span class="metric-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#D9367F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+            </svg>
+          </span>
+          <span class="metric-card__number" data-stat="publications" data-count="23">0</span>
+          <span class="metric-card__label">發表著作</span>
+          <span class="metric-card__label-en mono-en">Publications</span>
+        </div>
+
+        <div class="card metric-card reveal" data-reveal-group="metric">
+          <span class="metric-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#D9480F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="16" rx="2"/>
+              <path d="M3 9h18"/>
+              <path d="M8 2v4"/>
+              <path d="M16 2v4"/>
+            </svg>
+          </span>
+          <span class="metric-card__number" data-stat="projects" data-count="11">0</span>
+          <span class="metric-card__label">研究計畫</span>
+          <span class="metric-card__label-en mono-en">Projects</span>
+        </div>
+
+        <div class="card metric-card reveal" data-reveal-group="metric">
+          <span class="metric-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#D9367F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2 3 7.5 12 12l9-4.5L12 2z"/>
+              <path d="M3 7.5v9L12 21l9-4.5v-9"/>
+            </svg>
+          </span>
+          <span class="metric-card__number" data-stat="areas" data-count="4">0</span>
+          <span class="metric-card__label">研究領域</span>
+          <span class="metric-card__label-en mono-en">Research Areas</span>
+        </div>
+
+        <div class="card metric-card reveal" data-reveal-group="metric">
+          <span class="metric-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#D9480F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 20v-1.5a3.5 3.5 0 0 0-3.5-3.5h-5A3.5 3.5 0 0 0 5 18.5V20"/>
+              <circle cx="9.5" cy="7.5" r="3.5"/>
+              <path d="M19 20v-1.5a3.5 3.5 0 0 0-2.5-3.36"/>
+              <path d="M14.5 4.14a3.5 3.5 0 0 1 0 6.72"/>
+            </svg>
+          </span>
+          <span class="metric-card__number metric-card__number--text" id="metric-members">招募中</span>
+          <span class="metric-card__label">團隊成員</span>
+          <span class="metric-card__label-en mono-en">Members</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       研究團隊 (Our Team)
+       ========================================================================== -->
+  <section class="section section--pink">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="section-header__title">
+          <span class="section-header__icon">
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <linearGradient id="team-logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#FF79BC"/>
+                  <stop offset="100%" stop-color="#FFA042"/>
+                </linearGradient>
+              </defs>
+              <g fill="url(#team-logo-grad)">
+                <rect x="24" y="4" width="16" height="24" rx="8"/>
+                <rect x="24" y="36" width="16" height="24" rx="8"/>
+                <rect x="4" y="24" width="24" height="16" rx="8"/>
+                <rect x="36" y="24" width="24" height="16" rx="8"/>
+                <rect x="24" y="24" width="16" height="16" rx="6"/>
+              </g>
+            </svg>
+          </span>
+          研究團隊
+        </h2>
+        <span class="mono-en">OUR TEAM</span>
+      </div>
+
+      <div class="team-grid">
+        <div class="card team-card reveal" data-reveal-group="team">
+          <span class="avatar team-card__avatar">宋</span>
+          <h3 class="team-card__name" id="team-pi-name"></h3>
+          <p class="team-card__role">實驗室主持人</p>
+          <p class="team-card__specialty">內外科護理・急重症護理・老人護理・護理行政・認知訓練・3D列印・專科護理師</p>
+        </div>
+
+        <a class="wip team-card--wip reveal" data-reveal-group="team" href="#contact">
+          成員名單整理中——歡迎加入我們
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="ecg-divider"></div>
+
+  <!-- ==========================================================================
+       聯絡我們 (Contact Us)
+       ========================================================================== -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="section-header__title">
+          <span class="section-header__icon">
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <linearGradient id="contact-logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#FF79BC"/>
+                  <stop offset="100%" stop-color="#FFA042"/>
+                </linearGradient>
+              </defs>
+              <g fill="url(#contact-logo-grad)">
+                <rect x="24" y="4" width="16" height="24" rx="8"/>
+                <rect x="24" y="36" width="16" height="24" rx="8"/>
+                <rect x="4" y="24" width="24" height="16" rx="8"/>
+                <rect x="36" y="24" width="24" height="16" rx="8"/>
+                <rect x="24" y="24" width="16" height="16" rx="6"/>
+              </g>
+            </svg>
+          </span>
+          聯絡我們
+        </h2>
+        <span class="mono-en">CONTACT US</span>
+      </div>
+
+      <div class="contact-grid">
+        <form class="card contact-form reveal" id="contact-form" data-reveal-group="contact" novalidate>
+          <div class="form-field">
+            <label for="contact-name">姓名 <span class="form-required">*</span></label>
+            <input type="text" id="contact-name" name="name" required>
+            <p class="form-error" id="contact-name-error" hidden>請填寫姓名</p>
+          </div>
+
+          <div class="form-field">
+            <label for="contact-email">Email</label>
+            <input type="email" id="contact-email" name="email">
+          </div>
+
+          <div class="form-field">
+            <label for="contact-subject">主題</label>
+            <select id="contact-subject" name="subject">
+              <option value="加入研究團隊">加入研究團隊</option>
+              <option value="實習與見習">實習與見習</option>
+              <option value="合作與交流">合作與交流</option>
+              <option value="其他">其他</option>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label for="contact-message">訊息 <span class="form-required">*</span></label>
+            <textarea id="contact-message" name="message" rows="5" required></textarea>
+            <p class="form-error" id="contact-message-error" hidden>請填寫訊息內容</p>
+          </div>
+
+          <button type="submit" class="btn btn-primary">送出訊息</button>
+        </form>
+
+        <div class="contact-info-grid">
+          <div class="card card--peach contact-info-card reveal" data-reveal-group="contact">
+            <h3 class="contact-info-card__title">加入研究團隊</h3>
+            <p class="contact-info-card__text">歡迎有志於護理研究的夥伴加入，共同投入專科訓練與創新照護的探索。</p>
+          </div>
+
+          <div class="card card--peach contact-info-card reveal" data-reveal-group="contact">
+            <h3 class="contact-info-card__title">實習與見習</h3>
+            <p class="contact-info-card__text">提供學生實習與見習機會，實地參與研究室的臨床與研究工作。</p>
+          </div>
+
+          <div class="card card--peach contact-info-card reveal" data-reveal-group="contact">
+            <h3 class="contact-info-card__title">合作與交流</h3>
+            <p class="contact-info-card__text">歡迎臨床單位、學術機構與業界夥伴洽談合作與交流機會。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <script src="js/data.js"></script>
   <script src="js/components.js"></script>
   <script src="js/animations.js"></script>
   <script>
     initLayout('index');
+
+    /* ==========================================================================
+       Homepage inline init — news rendering + contact form (Task 5)
+       ========================================================================== */
+    const NEWS_CHIP_CLASS = {
+      "榮譽": "chip--honor",
+      "發表": "chip--pub",
+      "活動": "chip--event",
+      "公告": "chip--announce"
+    };
+
+    function renderNewsCard(item) {
+      const chipClass = NEWS_CHIP_CLASS[item.category] || "chip--announce";
+      return `
+<div class="card news-card reveal" data-reveal-group="news">
+  <div class="news-card__meta">
+    <span class="news-card__date mono-en">${item.date}</span>
+    <span class="chip ${chipClass}">${item.category}</span>
+  </div>
+  <p class="news-card__content">${item.content}</p>
+</div>`;
+    }
+
+    async function renderNews() {
+      const grid = document.getElementById("news-grid");
+      if (!grid) return;
+      const news = await fetchNews();
+      const top3 = news.slice(0, 3);
+      grid.innerHTML = top3.map(renderNewsCard).join("");
+      initReveal();
+    }
+
+    function fillContactStrings() {
+      const piName = document.getElementById("team-pi-name");
+      if (piName) piName.textContent = SITE.pi;
+    }
+
+    function fillStats() {
+      const stats = SITE.stats;
+      const numberEls = document.querySelectorAll(".metric-card__number[data-stat]");
+      numberEls.forEach((el) => {
+        const key = el.dataset.stat;
+        const value = stats[key];
+        if (value === null || value === undefined) return;
+        el.setAttribute("data-count", String(value));
+      });
+
+      const membersEl = document.getElementById("metric-members");
+      if (membersEl && stats.members !== null) {
+        membersEl.textContent = String(stats.members);
+        membersEl.setAttribute("data-count", String(stats.members));
+        membersEl.classList.remove("metric-card__number--text");
+      }
+    }
+
+    function initContactForm() {
+      const form = document.getElementById("contact-form");
+      if (!form) return;
+
+      const nameInput = document.getElementById("contact-name");
+      const emailInput = document.getElementById("contact-email");
+      const subjectInput = document.getElementById("contact-subject");
+      const messageInput = document.getElementById("contact-message");
+      const nameError = document.getElementById("contact-name-error");
+      const messageError = document.getElementById("contact-message-error");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const name = nameInput.value.trim();
+        const message = messageInput.value.trim();
+
+        const nameValid = name.length > 0;
+        const messageValid = message.length > 0;
+
+        nameError.hidden = nameValid;
+        messageError.hidden = messageValid;
+
+        if (!nameValid || !messageValid) return;
+
+        const email = emailInput.value.trim();
+        const subject = subjectInput.value;
+
+        const mailSubject = "[網站來信] " + subject + " - " + name;
+        const mailBody = message + "\n\n聯絡人：" + name + " (" + email + ")";
+
+        const mailtoUrl = "mailto:" + SITE.email +
+          "?subject=" + encodeURIComponent(mailSubject) +
+          "&body=" + encodeURIComponent(mailBody);
+
+        window.location.href = mailtoUrl;
+      });
+    }
+
+    fillContactStrings();
+    fillStats();
     initReveal();
     initCounters();
+    renderNews();
+    initContactForm();
   </script>
 </body>
 </html>
