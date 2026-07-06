@@ -102,6 +102,12 @@ function renderFooter() {
         ${quickLinks}
       </ul>
     </div>
+    <div class="site-footer__links">
+      <h3>友好連結</h3>
+      <ul>
+        <li><a href="https://bobyu89.github.io/ycho-lab-website/" target="_blank" rel="noopener">智慧醫療轉譯及創新實驗室<span class="friend-sub">賀彥中 助理教授</span></a></li>
+      </ul>
+    </div>
   </div>
   <div class="container">
     <p class="site-footer__copyright">© 2026 ${SITE.nameZh}</p>

@@ -434,9 +434,15 @@ img.avatar {
 
 .site-footer__inner {
   display: grid;
-  grid-template-columns: 1.2fr 1fr 1fr;
+  grid-template-columns: 1.2fr 1fr 0.8fr 1fr;
   gap: 40px;
   padding-bottom: 32px;
+}
+
+.site-footer__links .friend-sub {
+  display: block;
+  font-size: 0.78rem;
+  color: rgba(55, 65, 81, 0.55);
 }
 
 .site-footer__brand {
