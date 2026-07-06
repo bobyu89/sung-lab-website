@@ -1,1 +1,5 @@
 lighthouse.json
+.superpowers/
+.firebase/
+*.log
+node_modules/

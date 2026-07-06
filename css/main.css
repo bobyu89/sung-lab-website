@@ -1,0 +1,271 @@
+/* ==========================================================================
+   Sung Lab Website — Design System
+   護理創新及專科訓練研究室 (Nursing Innovation & NP Training Lab)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Variables
+   -------------------------------------------------------------------------- */
+:root {
+  --pink: #FF79BC;
+  --pink-deep: #D9367F;
+  --orange: #FFA042;
+  --peach: #FFE6D6;
+  --pink-bg: #FFF2F6;
+  --orange-deep: #D9480F;
+  --white: #FFFFFF;
+  --gray: #6B7280;
+  --ink: #374151;
+  --radius: 20px;
+  --radius-pill: 999px;
+  --shadow-card: 0 10px 30px rgba(255, 121, 188, 0.14);
+  --grad-brand: linear-gradient(135deg, #FF79BC, #FFA042);
+  --font-sans: "Noto Sans TC", "Inter", system-ui, sans-serif;
+  --font-en: "Inter", "Noto Sans TC", sans-serif;
+}
+
+/* --------------------------------------------------------------------------
+   2. Reset
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--white);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* --------------------------------------------------------------------------
+   3. Typography
+   -------------------------------------------------------------------------- */
+.mono-en {
+  font-family: var(--font-en);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  color: var(--pink-deep);
+}
+
+/* --------------------------------------------------------------------------
+   4. Layout
+   -------------------------------------------------------------------------- */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section {
+  padding: 80px 0;
+}
+
+.section--pink {
+  background: var(--pink-bg);
+}
+
+/* --------------------------------------------------------------------------
+   5. Components
+   -------------------------------------------------------------------------- */
+
+/* Card */
+.card {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  padding: 32px;
+}
+
+.card--peach {
+  background: var(--peach);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn-primary {
+  background: var(--pink-deep);
+  color: var(--white);
+}
+
+.btn-primary::after {
+  content: "\2192";
+  display: inline-block;
+  transition: transform 0.25s ease;
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--orange-deep);
+  border: 2px solid var(--orange);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .btn-primary:hover,
+  .btn-outline:hover {
+    transform: scale(1.04);
+  }
+
+  .btn-primary:hover::after {
+    transform: translateX(4px);
+  }
+}
+
+/* Chip */
+.chip {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: var(--radius-pill);
+  background: var(--peach);
+  color: var(--pink-deep);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* Avatar */
+.avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--grad-brand);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+/* Work-in-progress placeholder */
+.wip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 160px;
+  border: 2px dashed var(--orange);
+  border-radius: var(--radius);
+  color: var(--gray);
+  font-size: 0.9rem;
+  text-align: center;
+  background: var(--pink-bg);
+}
+
+/* --------------------------------------------------------------------------
+   6. Decorations
+   -------------------------------------------------------------------------- */
+
+/* Gradient blob */
+.blob {
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  background: var(--grad-brand);
+  filter: blur(80px);
+  opacity: 0.35;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Dotted pattern background */
+.dots {
+  background-image: radial-gradient(var(--pink) 1.5px, transparent 1.5px);
+  background-size: 18px 18px;
+  opacity: 0.25;
+}
+
+/* ECG divider */
+.ecg-divider {
+  width: 100%;
+  height: 40px;
+  background-repeat: repeat-x;
+  background-position: center;
+  background-size: 300px 40px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='40' viewBox='0 0 300 40'%3E%3Cpolyline points='0,20 60,20 75,5 90,35 105,20 300,20' fill='none' stroke='%23FF79BC' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+/* --------------------------------------------------------------------------
+   7. Animations
+   -------------------------------------------------------------------------- */
+
+/* Reveal on scroll */
+.reveal {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: 0.6s;
+  }
+
+  .reveal.in {
+    opacity: 1;
+    transform: none;
+  }
+
+  @keyframes blob-drift {
+    0% {
+      transform: translate(0, 0) scale(1);
+    }
+    33% {
+      transform: translate(20px, -30px) scale(1.05);
+    }
+    66% {
+      transform: translate(-20px, 20px) scale(0.97);
+    }
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+  }
+
+  .blob {
+    animation: blob-drift 18s ease-in-out infinite;
+  }
+}
