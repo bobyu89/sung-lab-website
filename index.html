@@ -282,10 +282,18 @@
 
       <div class="team-grid">
         <div class="card team-card reveal" data-reveal-group="team">
-          <span class="avatar team-card__avatar">宋</span>
+          <img class="avatar team-card__avatar" src="assets/members/pi.jpg" alt="宋建美 助理教授照片">
           <h3 class="team-card__name" id="team-pi-name"></h3>
           <p class="team-card__role">實驗室主持人</p>
-          <p class="team-card__specialty">內外科護理・急重症護理・老人護理・護理行政・認知訓練・3D列印・專科護理師</p>
+          <div class="team-card__badges">
+            <span class="chip">內外科護理</span>
+            <span class="chip">急重症護理</span>
+            <span class="chip">老人護理</span>
+            <span class="chip">護理行政</span>
+            <span class="chip">認知訓練</span>
+            <span class="chip">3D列印</span>
+            <span class="chip">專科護理師</span>
+          </div>
         </div>
 
         <a class="wip team-card--wip reveal" data-reveal-group="team" href="members.html">
@@ -413,13 +421,33 @@
         ? `<a href="${escapeHtml(item.link)}" target="_blank" rel="noopener">${escapedContent}</a>`
         : escapedContent;
       return `
-<div class="card news-card reveal" data-reveal-group="news">
+<div class="card news-card reveal" data-reveal-group="news" tabindex="0" role="button"
+     aria-expanded="false" aria-label="展開消息全文">
   <div class="news-card__meta">
     <span class="news-card__date mono-en">${escapedDate}</span>
     <span class="chip ${chipClass}">${escapedCategory}</span>
   </div>
   <p class="news-card__content">${contentHtml}</p>
 </div>`;
+    }
+
+    /* 點卡片（或 Enter/空白鍵）展開/收合全文；點內部連結時不攔截 */
+    function initNewsCardToggle(grid) {
+      const toggle = (card) => {
+        const open = card.classList.toggle("news-card--open");
+        card.setAttribute("aria-expanded", open ? "true" : "false");
+        card.setAttribute("aria-label", open ? "收合消息全文" : "展開消息全文");
+      };
+      grid.addEventListener("click", (e) => {
+        if (e.target.closest("a")) return;
+        const card = e.target.closest(".news-card");
+        if (card) toggle(card);
+      });
+      grid.addEventListener("keydown", (e) => {
+        if (e.key !== "Enter" && e.key !== " ") return;
+        const card = e.target.closest(".news-card");
+        if (card && !e.target.closest("a")) { e.preventDefault(); toggle(card); }
+      });
     }
 
     let allNews = [];
@@ -432,6 +460,7 @@
       const top3 = allNews.slice(0, 3);
       grid.innerHTML = top3.map(renderNewsCard).join("");
       initReveal();
+      initNewsCardToggle(grid);
 
       const viewAllBtn = document.getElementById("news-view-all");
       if (viewAllBtn) {

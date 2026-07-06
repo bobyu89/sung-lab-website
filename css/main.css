@@ -858,6 +858,15 @@ body.lightbox-open {
   text-overflow: ellipsis;
 }
 
+/* 消息卡可點擊展開全文 */
+.news-card { cursor: pointer; }
+.news-card:focus-visible { outline: 2px solid var(--pink-deep); outline-offset: 2px; }
+.news-card--open .news-card__content {
+  display: block;
+  -webkit-line-clamp: unset;
+  overflow: visible;
+}
+
 /* Chip color variants — category mapping (all keep dark text).
    Text colors below are darkened locally from --pink-deep/--orange-deep/--gray
    (not the shared tokens) so each variant meets WCAG AA 4.5:1 against its
@@ -1020,6 +1029,18 @@ body.lightbox-open {
   color: var(--gray);
   font-size: 0.88rem;
   line-height: 1.6;
+}
+
+/* 主持人專長小徽章 */
+.team-card__badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+.team-card__badges .chip {
+  font-size: 0.78rem;
+  padding: 4px 12px;
 }
 
 .team-card--wip {
