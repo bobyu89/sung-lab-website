@@ -1,0 +1,6 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    { "name": "sung-lab", "runtimeExecutable": "powershell", "runtimeArgs": ["-NoProfile", "-File", "tools/serve.ps1"], "autoPort": true }
+  ]
+}

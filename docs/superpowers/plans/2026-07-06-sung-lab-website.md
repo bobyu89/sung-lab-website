@@ -12,6 +12,7 @@
 
 - 品牌色（精確值）：`--pink:#FF79BC`、`--orange:#FFA042`、`--peach:#FFE6D6`、`--pink-bg:#FFF2F6`、`--white:#FFFFFF`、`--gray:#6B7280`、`--ink:#374151`、`--pink-deep:#D9367F`
 - **小字級文字禁用 #FF79BC 與 #FFA042**（對比不足）；文字用 `--ink`／`--gray`／`--pink-deep`
+- **白字按鈕底色一律用深色變體** `--pink-deep`／`--orange-deep`（#FF79BC/#FFA042 配白字未達 WCAG AA；淺色只作 hover 光暈、描邊、裝飾）
 - 所有動畫包在 `@media (prefers-reduced-motion: no-preference)` 或等效 JS 檢查內
 - 文案一律取自 `docs/content/pi-sung-chien-mei.md`，**不得虛構研究內容**；論文列表中 `Sung, C. M.` 與 `宋建美` 加 `<strong>`
 - 站名「護理創新及專科訓練研究室」與英文名、統計數字只寫在 `js/data.js` 的 `SITE` 常數
@@ -38,6 +39,7 @@
   --orange: #FFA042;
   --peach: #FFE6D6;
   --pink-bg: #FFF2F6;
+  --orange-deep: #D9480F;
   --white: #FFFFFF;
   --gray: #6B7280;
   --ink: #374151;
@@ -75,7 +77,7 @@
 ```
 
 - [ ] **Step 3:** 建立煙霧測試版 `index.html`：引 main.css 與 Google Fonts（`Noto+Sans+TC:wght@400;500;700;900`、`Inter:wght@500;600;800`），body 放一個 `.section--pink` 內含 `.card`（標題＋`.chip`＋`.btn-primary`）與一個 `.blob`。
-- [ ] **Step 4:** 用 Preview 啟動 `lab-site`，`preview_inspect` 驗證：`.btn-primary` 的 `background-color` 為 `rgb(255, 121, 188)`、`.card` 的 `border-radius` 為 `20px`；`preview_screenshot` 確認整體粉橙氛圍。
+- [ ] **Step 4:** 用 Preview 啟動 `lab-site`，`preview_inspect` 驗證：`.btn-primary` 的 `background-color` 為 `rgb(217, 54, 127)`（--pink-deep）、`.card` 的 `border-radius` 為 `20px`；`preview_screenshot` 確認整體粉橙氛圍。
 - [ ] **Step 5:** Commit：`git add -A && git commit -m "feat: design system foundation"`
 
 ### Task 2: 共用元件（logo／導覽列／頁尾／燈箱）

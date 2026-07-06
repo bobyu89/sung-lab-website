@@ -108,9 +108,8 @@
 
 ## 6. Google 後台資料架構
 
-### 試算表（一份、兩工作表、發布到網路）
+### 試算表（一份、一工作表、發布到網路）
 - **news**：`date`（YYYY-MM-DD）、`category`（榮譽｜發表｜活動｜公告）、`content`、`link`（選填）
-- **events**：`date`、`title`、`description`、`image`（選填）、`pinned`
 
 讀取：`https://docs.google.com/spreadsheets/d/{ID}/gviz/tq?tqx=out:json&sheet={name}`，日期新→舊。
 
