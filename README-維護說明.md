@@ -166,9 +166,21 @@ const SITE = {
 
 ---
 
-## 6. 如何把網站發布到正式網址（Firebase）
+## 6. 如何把網站發布到正式網址
 
-網站目前是純靜態網頁（不需要資料庫、不需要後端伺服器），最簡單的免費發布方式是使用 **Firebase Hosting**。
+網站目前是純靜態網頁（不需要資料庫、不需要後端伺服器），已採用 **GitHub Pages** 發布：
+
+- 正式網址：`https://bobyu89.github.io/sung-lab-website/`
+- GitHub repo：`https://github.com/bobyu89/sung-lab-website`
+- **之後每次更新內容**（改了 `js/data.js` 或任何檔案）：在專案資料夾執行
+  ```
+  git add -A
+  git commit -m "更新內容"
+  git push
+  ```
+  推送後約 1–2 分鐘 GitHub Pages 會自動發布最新版本，不需要其他步驟。
+
+以下 Firebase 為**備用方案**（如日後想改用 Firebase Hosting 或綁自訂網域時參考）。
 
 ### 6.1 前置需求（僅需設定一次）
 
