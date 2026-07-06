@@ -180,6 +180,12 @@ button {
   font-size: 1.1rem;
 }
 
+/* When .avatar wraps a real <img> (e.g. member photo), keep the circular
+   crop and fill the frame without distortion. */
+img.avatar {
+  object-fit: cover;
+}
+
 /* Work-in-progress placeholder */
 .wip {
   display: flex;
