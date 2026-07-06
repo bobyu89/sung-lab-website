@@ -223,7 +223,7 @@ firebase deploy
    ```
    npx --yes lighthouse http://localhost:5175 --only-categories=performance,accessibility --chrome-flags="--headless" --output=json --output-path=./lighthouse.json
    ```
-2. **首頁大圖 `assets/hero-illustration.png` 尚未提供**：目前會自動顯示粉橘漸層愛心圖示佔位，不影響版面，正式插畫圖檔規格請見 `assets/素材規格清單.md`。
+2. ~~首頁大圖尚未提供~~ **已完成**：`assets/hero-illustration.png` 已於 2026-07-06 放入正式插畫；日後要更換只需覆蓋同名檔案（規格見 `assets/素材規格清單.md`）。
 3. **「團隊成員」頁面除主持人外為佔位內容**：等老師確認完整團隊成員名單（含照片）後再行補上。
 4. **「教學資源」頁面部分區塊（課程教學／學生作品／臨床教學）為「建置中」佔位**：待相關內容確認後補上。
 5. **「開放資源」頁面（開放工具／衛教素材／研究 Protocol）為「建置中」佔位**：待相關內容確認後補上。
