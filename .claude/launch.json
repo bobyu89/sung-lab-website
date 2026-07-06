@@ -1,6 +1,6 @@
 {
   "version": "0.0.1",
   "configurations": [
-    { "name": "sung-lab", "runtimeExecutable": "npx", "runtimeArgs": ["--yes", "http-server", "-p", "5175", "-c-1", "."], "port": 5175 }
+    { "name": "sung-lab", "runtimeExecutable": "powershell", "runtimeArgs": ["-NoProfile", "-File", "tools/serve.ps1"], "autoPort": true }
   ]
 }
