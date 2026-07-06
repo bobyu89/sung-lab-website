@@ -161,7 +161,9 @@ button {
   padding: 6px 16px;
   border-radius: var(--radius-pill);
   background: var(--peach);
-  color: var(--pink-deep);
+  /* Darkened from --pink-deep locally (not the shared token) to meet WCAG AA
+     4.5:1 for small text against this chip's #FFE6D6 background. */
+  color: #B32660;
   font-size: 0.85rem;
   font-weight: 600;
 }
@@ -856,26 +858,29 @@ body.lightbox-open {
   text-overflow: ellipsis;
 }
 
-/* Chip color variants — category mapping (all keep dark text) */
+/* Chip color variants — category mapping (all keep dark text).
+   Text colors below are darkened locally from --pink-deep/--orange-deep/--gray
+   (not the shared tokens) so each variant meets WCAG AA 4.5:1 against its
+   own background; hue identity (pink/orange/gray) is unchanged. */
 .chip--honor {
   background: var(--pink-bg);
-  color: var(--pink-deep);
+  color: #B32660;
 }
 
 .chip--pub {
   background: #FFE9D2;
-  color: var(--orange-deep);
+  color: #A63A08;
 }
 
 .chip--event {
   background: var(--peach);
-  color: var(--pink-deep);
+  color: #B32660;
 }
 
 .chip--announce {
   background: transparent;
-  color: var(--gray);
-  border: 1.5px solid var(--gray);
+  color: #4B5563;
+  border: 1.5px solid #4B5563;
 }
 
 @media (max-width: 1023px) {
