@@ -1108,3 +1108,422 @@ body.lightbox-open {
     grid-template-columns: 1fr;
   }
 }
+
+/* --------------------------------------------------------------------------
+   18. Page hero (subpage banner) — .mono-en label + zh h1 + description
+   -------------------------------------------------------------------------- */
+.page-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 56px 0 40px;
+}
+
+.page-hero__inner {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.page-hero__label {
+  display: inline-block;
+  margin-bottom: 12px;
+}
+
+.page-hero__title {
+  font-size: clamp(1.7rem, 3.6vw, 2.4rem);
+  font-weight: 900;
+  color: var(--ink);
+  margin: 0 0 12px;
+}
+
+.page-hero__desc {
+  color: var(--gray);
+  font-size: 1rem;
+  max-width: 60ch;
+  margin: 0 auto;
+}
+
+/* --------------------------------------------------------------------------
+   19. Publications list (成果發表)
+   -------------------------------------------------------------------------- */
+.pub-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.pub-item {
+  display: flex;
+  gap: 16px;
+  align-items: baseline;
+}
+
+.pub-item__index {
+  flex-shrink: 0;
+  width: 32px;
+  color: var(--pink-deep);
+  font-weight: 700;
+  font-family: var(--font-en);
+}
+
+.pub-item__text {
+  margin: 0;
+  color: var(--ink);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.pub-item__text em {
+  font-style: italic;
+}
+
+.pub-section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 48px 0 20px;
+}
+
+.pub-footnote {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(107, 114, 128, 0.2);
+  color: var(--gray);
+  font-size: 0.88rem;
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   20. Research projects table (研究計畫)
+   -------------------------------------------------------------------------- */
+.table-wrap {
+  overflow-x: auto;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  background: var(--white);
+}
+
+.projects-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 720px;
+}
+
+.projects-table th,
+.projects-table td {
+  padding: 16px 20px;
+  text-align: left;
+  font-size: 0.9rem;
+  vertical-align: top;
+  border-bottom: 1px solid rgba(107, 114, 128, 0.15);
+}
+
+.projects-table th {
+  background: var(--pink-bg);
+  color: var(--pink-deep);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.projects-table td {
+  color: var(--ink);
+}
+
+.projects-table tr:last-child td {
+  border-bottom: none;
+}
+
+.projects-table__name {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+/* --------------------------------------------------------------------------
+   21. Focus area sections (research.html 四領域)
+   -------------------------------------------------------------------------- */
+.area-block {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.area-block:last-child {
+  margin-bottom: 0;
+}
+
+.area-block__icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--peach);
+  flex-shrink: 0;
+}
+
+.area-block__icon svg {
+  width: 26px;
+  height: 26px;
+}
+
+.area-block__title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0 0 8px;
+}
+
+.area-block__text {
+  color: var(--gray);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin: 0;
+}
+
+@media (max-width: 599px) {
+  .area-block {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   22. Education subsections (education.html)
+   -------------------------------------------------------------------------- */
+.edu-section {
+  margin-bottom: 56px;
+}
+
+.edu-section:last-child {
+  margin-bottom: 0;
+}
+
+.edu-section__title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.edu-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.edu-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.edu-card__title {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.edu-card__text {
+  margin: 0;
+  color: var(--gray);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.edu-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+@media (max-width: 767px) {
+  .edu-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   23. Member intro (members.html)
+   -------------------------------------------------------------------------- */
+.member-intro {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.member-intro__avatar-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+}
+
+.member-intro__avatar {
+  width: 120px;
+  height: 120px;
+  font-size: 2.5rem;
+}
+
+.member-intro__name {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.member-intro__role {
+  margin: 0;
+  color: var(--pink-deep);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.member-intro__body h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--pink-deep);
+  margin: 0 0 12px;
+}
+
+.member-intro__block {
+  margin-bottom: 28px;
+}
+
+.member-intro__block:last-child {
+  margin-bottom: 0;
+}
+
+.member-intro__current {
+  color: var(--ink);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.member-intro__list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.member-intro__list li {
+  color: var(--ink);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  padding-left: 18px;
+  position: relative;
+}
+
+.member-intro__list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--grad-brand);
+}
+
+.specialty-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+@media (max-width: 767px) {
+  .member-intro {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .member-intro__list li {
+    text-align: left;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   24. WIP card grid (collaboration.html / resources.html)
+   -------------------------------------------------------------------------- */
+.wip-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.wip-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.wip-card__title {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.wip-card__text {
+  margin: 0;
+  color: var(--gray);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 1023px) {
+  .wip-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   25. Photo wall (collaboration.html 活動花絮) — CSS columns masonry
+   -------------------------------------------------------------------------- */
+.photo-wall {
+  columns: 4 220px;
+  column-gap: 16px;
+}
+
+.photo-wall__item {
+  display: block;
+  width: 100%;
+  break-inside: avoid;
+  margin-bottom: 16px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  background: none;
+}
+
+.photo-wall__item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .photo-wall__item:hover img {
+    transform: scale(1.04);
+  }
+}
+
+@media (max-width: 767px) {
+  .photo-wall {
+    columns: 2 160px;
+  }
+}
