@@ -160,9 +160,10 @@ const FALLBACK_PHOTOS = [
   window.fetchPhotos = async function fetchPhotos(limit) {
     try {
       if (!CONFIG.DRIVE_FOLDER_ID || !CONFIG.DRIVE_API_KEY) return applyLimit(FALLBACK_PHOTOS, limit);
-      const url = "https://www.googleapis.com/drive/v3/files?q='" + CONFIG.DRIVE_FOLDER_ID +
-        "'+in+parents+and+mimeType+contains+'image/'&key=" + CONFIG.DRIVE_API_KEY +
-        "&fields=files(id,name)";
+      const query = "'" + CONFIG.DRIVE_FOLDER_ID + "' in parents and mimeType contains 'image/'";
+      const url = "https://www.googleapis.com/drive/v3/files?q=" + encodeURIComponent(query) +
+        "&key=" + encodeURIComponent(CONFIG.DRIVE_API_KEY) +
+        "&fields=" + encodeURIComponent("files(id,name)");
       const res = await fetch(url);
       if (!res.ok) throw new Error("drive fetch failed: " + res.status);
       const data = await res.json();
