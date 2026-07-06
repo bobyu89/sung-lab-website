@@ -115,13 +115,23 @@
     initLayout('collaboration');
     initReveal();
 
+    function escapeHtml(str) {
+      if (!str) return "";
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
     async function renderPhotoWall() {
       const wall = document.getElementById('photo-wall');
       if (!wall) return;
       const photos = await fetchPhotos(0);
       wall.innerHTML = photos.map((photo, i) => `
-<button type="button" class="photo-wall__item reveal" data-reveal-group="photo" data-src="${photo.src}" data-caption="${photo.caption.replace(/"/g, '&quot;')}">
-  <img src="${photo.thumb}" alt="${photo.caption.replace(/"/g, '&quot;')}" loading="lazy">
+<button type="button" class="photo-wall__item reveal" data-reveal-group="photo" data-src="${escapeHtml(photo.src)}" data-caption="${escapeHtml(photo.caption)}">
+  <img src="${escapeHtml(photo.thumb)}" alt="${escapeHtml(photo.caption)}" loading="lazy">
 </button>`).join('');
 
       wall.querySelectorAll('.photo-wall__item').forEach((btn) => {
