@@ -36,11 +36,6 @@ const FALLBACK_NEWS = [
   { date: "2023-08-01", category: "公告", content: "3D 列印教具培訓課程研究計畫執行中，歡迎臨床夥伴交流", link: "" }
 ];
 
-const FALLBACK_EVENTS = [
-  { date: "2026-01-15", title: "統合分析研究刊登於 International Journal of Nursing Studies", description: "社區健康照護護理師之臨床成效與成本效益統合分析正式刊登於國際期刊 International Journal of Nursing Studies。", image: "", pinned: true },
-  { date: "2023-08-01", title: "3D 列印教具培訓計畫", description: "3D 列印植入式中心靜脈導管教具培訓課程研究計畫執行中，歡迎臨床夥伴交流合作。", image: "", pinned: true }
-];
-
 const FALLBACK_PHOTOS = [
   { src: "assets/placeholder-1.svg", thumb: "assets/placeholder-1.svg", caption: "活動照片佔位 1" },
   { src: "assets/placeholder-2.svg", thumb: "assets/placeholder-2.svg", caption: "活動照片佔位 2" },
@@ -127,30 +122,6 @@ const FALLBACK_PHOTOS = [
       return sortByDateDesc(news);
     } catch (err) {
       return FALLBACK_NEWS;
-    }
-  };
-
-  /* ------------------------------------------------------------------------
-     fetchEvents — reads "events" sheet, columns: date/title/description/image/pinned
-     ------------------------------------------------------------------------ */
-  window.fetchEvents = async function fetchEvents() {
-    try {
-      if (!CONFIG.SHEET_ID) return FALLBACK_EVENTS;
-      const rows = await fetchGvizSheet("events");
-      if (!rows.length) return FALLBACK_EVENTS;
-      const events = rows.map(function (entry) {
-        const pinnedRaw = cellValue(entry.row, entry.colIndex, "pinned");
-        return {
-          date: cellValue(entry.row, entry.colIndex, "date"),
-          title: cellValue(entry.row, entry.colIndex, "title"),
-          description: cellValue(entry.row, entry.colIndex, "description"),
-          image: cellValue(entry.row, entry.colIndex, "image"),
-          pinned: pinnedRaw === true || pinnedRaw === "TRUE" || pinnedRaw === "true"
-        };
-      });
-      return sortByDateDesc(events);
-    } catch (err) {
-      return FALLBACK_EVENTS;
     }
   };
 
