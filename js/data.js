@@ -19,8 +19,8 @@ const SITE = {
    Empty strings mean "not configured" → fetchers resolve to FALLBACK_* data.
    ========================================================================== */
 const CONFIG = {
-  SHEET_ID: "",
-  DRIVE_FOLDER_ID: "",
+  SHEET_ID: "1PobbRy0ovN04ORWiXl-3-SM38JVQv8ic9mrVgjh4gHY", // 網站最新消息（建美老師研究室管理區）
+  DRIVE_FOLDER_ID: "1cgZTh2naeiNb9TbhxjfKLm0H-GOrEY3Z",     // 活動照片資料夾（尚缺 API 金鑰，未啟用）
   DRIVE_API_KEY: ""
 };
 
@@ -88,9 +88,12 @@ const FALLBACK_PHOTOS = [
     return cell.v;
   }
 
-  async function fetchGvizSheet(sheetName) {
+  /* Fetches the spreadsheet's FIRST sheet (no sheet-name dependency) and
+     forces row 1 to be treated as column headers (headers=1), so the tab
+     can be named anything as long as its columns match the expected labels. */
+  async function fetchGvizSheet() {
     const url = "https://docs.google.com/spreadsheets/d/" + CONFIG.SHEET_ID +
-      "/gviz/tq?tqx=out:json&sheet=" + encodeURIComponent(sheetName);
+      "/gviz/tq?tqx=out:json&headers=1";
     const res = await fetch(url);
     if (!res.ok) throw new Error("gviz fetch failed: " + res.status);
     const text = await res.text();
@@ -114,7 +117,7 @@ const FALLBACK_PHOTOS = [
   window.fetchNews = async function fetchNews() {
     try {
       if (!CONFIG.SHEET_ID) return FALLBACK_NEWS;
-      const rows = await fetchGvizSheet("news");
+      const rows = await fetchGvizSheet();
       if (!rows.length) return FALLBACK_NEWS;
       const news = rows.map(function (entry) {
         return {
