@@ -74,12 +74,16 @@ const FALLBACK_PHOTOS = [
     return index;
   }
 
-  /* Read a cell's value by header label from a gviz row; "" if missing/empty. */
+  /* Read a cell's value by header label from a gviz row; "" if missing/empty.
+     Prefers the formatted display string (cell.f) so date-typed cells return
+     their human-readable text (e.g. "2026-07-06") instead of the raw
+     Date(2026,6,6) constructor value gviz puts in cell.v. */
   function cellValue(row, colIndex, label) {
     const i = colIndex[label];
     if (i === undefined) return "";
     const cell = row.c[i];
     if (!cell || cell.v === null || cell.v === undefined) return "";
+    if (typeof cell.f === "string" && cell.f !== "") return cell.f;
     return cell.v;
   }
 
