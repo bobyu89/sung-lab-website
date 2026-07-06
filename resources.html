@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>開放資源｜護理創新及專科訓練研究室</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Inter:wght@500;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23FF79BC'/%3E%3Cstop offset='100%25' stop-color='%23FFA042'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg fill='url(%23g)'%3E%3Crect x='24' y='4' width='16' height='24' rx='8'/%3E%3Crect x='24' y='36' width='16' height='24' rx='8'/%3E%3Crect x='4' y='24' width='24' height='16' rx='8'/%3E%3Crect x='36' y='24' width='24' height='16' rx='8'/%3E%3Crect x='24' y='24' width='16' height='16' rx='6'/%3E%3C/g%3E%3Cpath d='M32 41.2c-4.6-3.9-9.6-7.8-9.6-12.6 0-3.1 2.5-5.6 5.6-5.6 1.8 0 3.5.9 4 2.3.5-1.4 2.2-2.3 4-2.3 3.1 0 5.6 2.5 5.6 5.6 0 4.8-5 8.7-9.6 12.6z' fill='%23FFFFFF'/%3E%3C/svg%3E">
+</head>
+<body>
+  <!-- ==========================================================================
+       Page hero
+       ========================================================================== -->
+  <section class="section section--pink page-hero">
+    <div class="dots" style="position: absolute; inset: 0; z-index: 0;"></div>
+    <div class="container page-hero__inner reveal">
+      <span class="mono-en page-hero__label">RESOURCES</span>
+      <h1 class="page-hero__title">開放資源</h1>
+      <p class="page-hero__desc">開放工具、衛教素材與研究 protocol，持續建置中。</p>
+    </div>
+  </section>
+
+  <div class="ecg-divider"></div>
+
+  <!-- ==========================================================================
+       開放資源
+       ========================================================================== -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="section-header__title">
+          <span class="section-header__icon">
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <linearGradient id="res-logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#FF79BC"/>
+                  <stop offset="100%" stop-color="#FFA042"/>
+                </linearGradient>
+              </defs>
+              <g fill="url(#res-logo-grad)">
+                <rect x="24" y="4" width="16" height="24" rx="8"/>
+                <rect x="24" y="36" width="16" height="24" rx="8"/>
+                <rect x="4" y="24" width="24" height="16" rx="8"/>
+                <rect x="36" y="24" width="24" height="16" rx="8"/>
+                <rect x="24" y="24" width="16" height="16" rx="6"/>
+              </g>
+            </svg>
+          </span>
+          開放資源
+        </h2>
+        <span class="mono-en">RESOURCES</span>
+      </div>
+
+      <div class="wip-grid">
+        <div class="card wip-card reveal" data-reveal-group="resources">
+          <h3 class="wip-card__title">開放工具</h3>
+          <div class="wip">開放工具建置中</div>
+        </div>
+        <div class="card wip-card reveal" data-reveal-group="resources">
+          <h3 class="wip-card__title">衛教素材</h3>
+          <div class="wip">衛教素材建置中</div>
+        </div>
+        <div class="card wip-card reveal" data-reveal-group="resources">
+          <h3 class="wip-card__title">研究 Protocol</h3>
+          <div class="wip">研究 Protocol 建置中</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="js/data.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/animations.js"></script>
+  <script>
+    initLayout('resources');
+    initReveal();
+  </script>
+</body>
+</html>
