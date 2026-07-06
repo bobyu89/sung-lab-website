@@ -37,6 +37,11 @@ const FALLBACK_NEWS = [
   { date: "2023-08-01", category: "公告", content: "3D 列印教具培訓課程研究計畫執行中，歡迎臨床夥伴交流", link: "" }
 ];
 
+/* 本地照片清單 — 把照片放進 assets/gallery/ 後在此登記即可顯示於活動花絮頁；
+   caption 會成為照片說明與燈箱文字。設定 Drive API 後以雲端照片優先。
+   範例：{ src: "assets/gallery/2026-06-15 EAFONS 研討會合影.jpg", caption: "2026-06-15 EAFONS 研討會合影" } */
+const LOCAL_PHOTOS = [];
+
 const FALLBACK_PHOTOS = [
   { src: "assets/placeholder-1.svg", thumb: "assets/placeholder-1.svg", caption: "活動照片佔位 1" },
   { src: "assets/placeholder-2.svg", thumb: "assets/placeholder-2.svg", caption: "活動照片佔位 2" },
@@ -136,9 +141,19 @@ const FALLBACK_PHOTOS = [
   /* ------------------------------------------------------------------------
      fetchPhotos — lists images from a Google Drive folder; limit=0 → all
      ------------------------------------------------------------------------ */
+  /* 未設定 Drive 時的本地來源：LOCAL_PHOTOS 有內容就用它，否則用佔位圖 */
+  function localPhotos() {
+    if (LOCAL_PHOTOS.length) {
+      return LOCAL_PHOTOS.map(function (p) {
+        return { src: p.src, thumb: p.thumb || p.src, caption: p.caption || "" };
+      });
+    }
+    return FALLBACK_PHOTOS;
+  }
+
   window.fetchPhotos = async function fetchPhotos(limit) {
     try {
-      if (!CONFIG.DRIVE_FOLDER_ID || !CONFIG.DRIVE_API_KEY) return applyLimit(FALLBACK_PHOTOS, limit);
+      if (!CONFIG.DRIVE_FOLDER_ID || !CONFIG.DRIVE_API_KEY) return applyLimit(localPhotos(), limit);
       const query = "'" + CONFIG.DRIVE_FOLDER_ID + "' in parents and mimeType contains 'image/'";
       const url = "https://www.googleapis.com/drive/v3/files?q=" + encodeURIComponent(query) +
         "&key=" + encodeURIComponent(CONFIG.DRIVE_API_KEY) +
@@ -147,7 +162,7 @@ const FALLBACK_PHOTOS = [
       if (!res.ok) throw new Error("drive fetch failed: " + res.status);
       const data = await res.json();
       const files = data.files || [];
-      if (!files.length) return applyLimit(FALLBACK_PHOTOS, limit);
+      if (!files.length) return applyLimit(localPhotos(), limit);
       const photos = files.map(function (file) {
         const thumb = "https://drive.google.com/thumbnail?id=" + file.id + "&sz=w800";
         const caption = file.name.replace(/\.[^/.]+$/, "");
@@ -155,7 +170,7 @@ const FALLBACK_PHOTOS = [
       });
       return applyLimit(photos, limit);
     } catch (err) {
-      return applyLimit(FALLBACK_PHOTOS, limit);
+      return applyLimit(localPhotos(), limit);
     }
   };
 

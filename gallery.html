@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>合作交流｜護理創新及專科訓練研究室</title>
+  <title>活動花絮｜護理創新及專科訓練研究室</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Inter:wght@500;600;800&display=swap" rel="stylesheet">
@@ -17,16 +17,16 @@
   <section class="section section--pink page-hero">
     <div class="dots" style="position: absolute; inset: 0; z-index: 0;"></div>
     <div class="container page-hero__inner reveal">
-      <span class="mono-en page-hero__label">COLLABORATION</span>
-      <h1 class="page-hero__title">合作交流</h1>
-      <p class="page-hero__desc">合作夥伴、研究招募與產學連結，攜手推動護理研究與創新。</p>
+      <span class="mono-en page-hero__label">GALLERY</span>
+      <h1 class="page-hero__title">活動花絮</h1>
+      <p class="page-hero__desc">獲獎時刻、研討會交流與團隊活動的紀錄，看見研究室的日常與榮耀。</p>
     </div>
   </section>
 
   <div class="ecg-divider"></div>
 
   <!-- ==========================================================================
-       合作項目
+       照片牆
        ========================================================================== -->
   <section class="section">
     <div class="container">
@@ -35,12 +35,12 @@
           <span class="section-header__icon">
             <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <defs>
-                <linearGradient id="collab-logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <linearGradient id="gallery-logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
                   <stop offset="0%" stop-color="#FF79BC"/>
                   <stop offset="100%" stop-color="#FFA042"/>
                 </linearGradient>
               </defs>
-              <g fill="url(#collab-logo-grad)">
+              <g fill="url(#gallery-logo-grad)">
                 <rect x="24" y="4" width="16" height="24" rx="8"/>
                 <rect x="24" y="36" width="16" height="24" rx="8"/>
                 <rect x="4" y="24" width="24" height="16" rx="8"/>
@@ -49,37 +49,14 @@
               </g>
             </svg>
           </span>
-          合作交流
+          精彩紀錄
         </h2>
-        <span class="mono-en">PARTNERSHIP</span>
+        <span class="mono-en">MOMENTS</span>
       </div>
 
-      <div class="wip-grid">
-        <div class="card wip-card reveal" data-reveal-group="collab">
-          <h3 class="wip-card__title">合作夥伴</h3>
-          <div class="wip">合作夥伴內容建置中</div>
-        </div>
-        <div class="card wip-card reveal" data-reveal-group="collab">
-          <h3 class="wip-card__title">研究招募</h3>
-          <div class="wip">研究招募內容建置中</div>
-        </div>
-        <div class="card wip-card reveal" data-reveal-group="collab">
-          <h3 class="wip-card__title">產學連結</h3>
-          <div class="wip">產學連結內容建置中</div>
-        </div>
+      <div class="photo-wall" id="photo-wall">
+        <!-- renderPhotoWall() populates this from fetchPhotos(0) -->
       </div>
-    </div>
-  </section>
-
-  <div class="ecg-divider"></div>
-
-  <!-- ==========================================================================
-       活動花絮導引（照片牆已移至 gallery.html）
-       ========================================================================== -->
-  <section class="section section--pink">
-    <div class="container" style="text-align: center;">
-      <p class="reveal" style="margin: 0 0 20px; color: var(--gray);">想看研究室的獲獎時刻與研討會交流紀錄嗎？</p>
-      <a class="btn btn-primary reveal" href="gallery.html">前往活動花絮 →</a>
     </div>
   </section>
 
@@ -87,8 +64,38 @@
   <script src="js/components.js"></script>
   <script src="js/animations.js"></script>
   <script>
-    initLayout('collaboration');
+    initLayout('gallery');
     initReveal();
+
+    function escapeHtml(str) {
+      if (!str) return "";
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
+    async function renderPhotoWall() {
+      const wall = document.getElementById('photo-wall');
+      if (!wall) return;
+      const photos = await fetchPhotos(0);
+      wall.innerHTML = photos.map((photo, i) => `
+<button type="button" class="photo-wall__item reveal" data-reveal-group="photo" data-src="${escapeHtml(photo.src)}" data-caption="${escapeHtml(photo.caption)}" aria-label="放大檢視：${escapeHtml(photo.caption)}">
+  <img src="${escapeHtml(photo.thumb)}" alt="${escapeHtml(photo.caption)}" loading="lazy">
+</button>`).join('');
+
+      wall.querySelectorAll('.photo-wall__item').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          openLightbox(btn.dataset.src, btn.dataset.caption);
+        });
+      });
+
+      initReveal();
+    }
+
+    renderPhotoWall();
   </script>
 </body>
 </html>

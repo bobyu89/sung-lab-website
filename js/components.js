@@ -37,6 +37,7 @@ const NAV_ITEMS = [
   { key: "education", label: "教學資源", href: "education.html" },
   { key: "members", label: "團隊成員", href: "members.html" },
   { key: "collaboration", label: "合作交流", href: "collaboration.html" },
+  { key: "gallery", label: "活動花絮", href: "gallery.html" },
   { key: "resources", label: "開放資源", href: "resources.html" },
   { key: "contact", label: "聯絡我們", href: "index.html#contact" }
 ];
@@ -76,7 +77,7 @@ function renderHeader(activePage) {
 }
 
 function renderFooter() {
-  const quickLinks = NAV_ITEMS.slice(0, 7)
+  const quickLinks = NAV_ITEMS.slice(0, 8)
     .map((item) => `<li><a href="${item.href}">${item.label}</a></li>`)
     .join("");
 
