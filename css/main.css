@@ -229,7 +229,358 @@ button {
 }
 
 /* --------------------------------------------------------------------------
-   7. Animations
+   7. Header / Navigation
+   -------------------------------------------------------------------------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--white);
+  box-shadow: 0 2px 12px rgba(55, 65, 81, 0.08);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+.site-header__brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.site-header__logo {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+.site-header__logo svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.site-header__brandtext {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.site-header__name {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.site-header__name-en {
+  font-size: 0.65rem;
+  letter-spacing: 0.04em;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.hamburger__line {
+  display: block;
+  width: 24px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--ink);
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.site-nav__list {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.nav-link {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--ink);
+  padding: 6px 2px;
+  position: relative;
+}
+
+.nav-link.active,
+.nav-link:hover {
+  color: var(--pink-deep);
+}
+
+.nav-link.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 3px;
+  border-radius: var(--radius-pill);
+  background: var(--grad-brand);
+}
+
+.btn-cta {
+  background: var(--orange-deep);
+  color: var(--white);
+  padding: 10px 22px;
+  font-size: 0.92rem;
+  white-space: nowrap;
+}
+
+.btn-cta::after {
+  content: none;
+}
+
+@media (max-width: 899px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .site-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: var(--white);
+    box-shadow: 0 12px 24px rgba(55, 65, 81, 0.1);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .site-nav--open {
+    max-height: 600px;
+  }
+
+  .site-nav__list {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 8px 24px;
+  }
+
+  .site-nav__list li {
+    border-bottom: 1px solid var(--pink-bg);
+  }
+
+  .nav-link {
+    display: block;
+    padding: 14px 0;
+  }
+
+  .nav-link.active::after {
+    display: none;
+  }
+
+  .btn-cta {
+    display: block;
+    text-align: center;
+    margin: 16px 24px 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-nav {
+    transition: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   8. Footer
+   -------------------------------------------------------------------------- */
+.site-footer {
+  padding: 64px 0 24px;
+}
+
+.site-footer__inner {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  gap: 40px;
+  padding-bottom: 32px;
+}
+
+.site-footer__brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.site-footer__logo {
+  width: 48px;
+  height: 48px;
+}
+
+.site-footer__logo svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.site-footer__name {
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin: 0;
+}
+
+.site-footer__tagline {
+  color: var(--gray);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.site-footer__contact h3,
+.site-footer__links h3 {
+  font-size: 0.95rem;
+  color: var(--pink-deep);
+  margin: 0 0 12px;
+}
+
+.site-footer__contact p {
+  margin: 0 0 8px;
+  font-size: 0.9rem;
+  color: var(--ink);
+}
+
+.site-footer__links ul {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.site-footer__links a {
+  font-size: 0.9rem;
+  color: var(--ink);
+}
+
+.site-footer__links a:hover {
+  color: var(--pink-deep);
+}
+
+.site-footer__copyright {
+  border-top: 1px solid rgba(55, 65, 81, 0.1);
+  padding-top: 20px;
+  font-size: 0.82rem;
+  color: var(--gray);
+  text-align: center;
+}
+
+@media (max-width: 767px) {
+  .site-footer__inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   9. Lightbox
+   -------------------------------------------------------------------------- */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox[hidden] {
+  display: none;
+}
+
+.lightbox__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 15, 20, 0.82);
+}
+
+.lightbox__content {
+  position: relative;
+  z-index: 1;
+  max-width: min(90vw, 900px);
+  max-height: 90vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.lightbox__close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+.lightbox__img {
+  max-width: 100%;
+  max-height: 75vh;
+  object-fit: contain;
+  background: var(--ink);
+}
+
+.lightbox__caption {
+  padding: 12px 20px;
+  font-size: 0.9rem;
+  color: var(--ink);
+  background: var(--white);
+}
+
+.lightbox__close {
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: var(--white);
+  color: var(--ink);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body.lightbox-open {
+  overflow: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   10. Animations
    -------------------------------------------------------------------------- */
 
 /* Reveal on scroll */
