@@ -202,6 +202,8 @@ const SITE = {
 firebase deploy
 ```
 
+> **提醒（第一次部署才需要）**：目前專案資料夾裡還沒有 `.firebaserc` 這個檔案（用來記住「這個專案要部署到哪一個 Firebase 專案」）。所以**第一次**部署前，工程人員需要先執行 `firebase login` 登入，再執行 `firebase use --add`，畫面會列出您在 6.2 建立好的 Firebase 專案，選擇（或視需要建立）對應的專案一次即可，之後每次 `firebase deploy` 就會自動記得部署到同一個專案，不用重複這個步驟。
+
 跑完之後終端機會顯示一個網址（類似 `https://sung-nursing-lab.web.app`），這就是網站的正式公開網址，之後可以請學校 IT 或網域商將 `.edu.tw` 網域指向這個地址（如需自訂網域，Firebase 主控台的「Hosting」頁面有「新增自訂網域」的引導步驟）。
 
 **之後每次更新內容**（改了 `js/data.js` 或任何檔案），只要重新執行一次 `firebase deploy` 就會發布最新版本。
