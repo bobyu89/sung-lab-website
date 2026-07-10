@@ -1138,46 +1138,63 @@ body.lightbox-open {
 /* --------------------------------------------------------------------------
    14. News grid (最新消息)
    -------------------------------------------------------------------------- */
-.news-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+/* 消息列表 — 一行一則，點擊展開全文（取代舊的方塊卡片） */
+.news-list {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
 }
 
-.news-card {
+.news-row {
   display: flex;
-  flex-direction: column;
-  gap: 12px;
+  align-items: baseline;
+  gap: 16px;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--pink-bg);
+  cursor: pointer;
+  transition: background 0.2s ease;
 }
 
-.news-card__meta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
+.news-row:last-child {
+  border-bottom: none;
 }
 
-.news-card__date {
+.news-row:hover {
+  background: var(--pink-bg);
+}
+
+.news-row:focus-visible {
+  outline: 2px solid var(--pink-deep);
+  outline-offset: -2px;
+}
+
+.news-row__date {
+  flex: 0 0 auto;
+  width: 5.5em;
   color: var(--gray);
-  font-size: 0.78rem;
+  font-size: 0.82rem;
+  white-space: nowrap;
 }
 
-.news-card__content {
+.news-row__chip {
+  flex: 0 0 auto;
+}
+
+.news-row__content {
+  flex: 1 1 auto;
+  min-width: 0;
   margin: 0;
   color: var(--ink);
   font-size: 0.95rem;
-  line-height: 1.5;
+  line-height: 1.55;
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  text-overflow: ellipsis;
 }
 
-/* 消息卡可點擊展開全文 */
-.news-card { cursor: pointer; }
-.news-card:focus-visible { outline: 2px solid var(--pink-deep); outline-offset: 2px; }
-.news-card--open .news-card__content {
+.news-row--open .news-row__content {
   display: block;
   -webkit-line-clamp: unset;
   overflow: visible;
@@ -1208,15 +1225,14 @@ body.lightbox-open {
   border: 1.5px solid #4B5563;
 }
 
-@media (max-width: 1023px) {
-  .news-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
 @media (max-width: 599px) {
-  .news-grid {
-    grid-template-columns: 1fr;
+  .news-row {
+    flex-wrap: wrap;
+    gap: 6px 12px;
+    padding: 14px 18px;
+  }
+  .news-row__content {
+    flex-basis: 100%;
   }
 }
 

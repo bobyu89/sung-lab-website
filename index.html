@@ -74,7 +74,7 @@
         <span class="mono-en">NEWS &amp; ACHIEVEMENTS</span>
       </div>
 
-      <div class="news-grid" id="news-grid" data-reveal-group="news">
+      <div class="news-list" id="news-grid" data-reveal-group="news">
         <!-- renderNews() populates this from fetchNews() -->
       </div>
       <div style="text-align: center; margin-top: 32px;">
@@ -203,31 +203,29 @@
         ? `<a href="${escapeHtml(item.link)}" target="_blank" rel="noopener">${escapedContent}</a>`
         : escapedContent;
       return `
-<div class="card news-card reveal" data-reveal-group="news" tabindex="0" role="button"
+<div class="news-row reveal" data-reveal-group="news" tabindex="0" role="button"
      aria-expanded="false" aria-label="展開消息全文">
-  <div class="news-card__meta">
-    <span class="news-card__date mono-en">${escapedDate}</span>
-    <span class="chip ${chipClass}">${escapedCategory}</span>
-  </div>
-  <p class="news-card__content">${contentHtml}</p>
+  <span class="news-row__date mono-en">${escapedDate}</span>
+  <span class="chip ${chipClass} news-row__chip">${escapedCategory}</span>
+  <p class="news-row__content">${contentHtml}</p>
 </div>`;
     }
 
     /* 點卡片（或 Enter/空白鍵）展開/收合全文；點內部連結時不攔截 */
     function initNewsCardToggle(grid) {
       const toggle = (card) => {
-        const open = card.classList.toggle("news-card--open");
+        const open = card.classList.toggle("news-row--open");
         card.setAttribute("aria-expanded", open ? "true" : "false");
         card.setAttribute("aria-label", open ? "收合消息全文" : "展開消息全文");
       };
       grid.addEventListener("click", (e) => {
         if (e.target.closest("a")) return;
-        const card = e.target.closest(".news-card");
+        const card = e.target.closest(".news-row");
         if (card) toggle(card);
       });
       grid.addEventListener("keydown", (e) => {
         if (e.key !== "Enter" && e.key !== " ") return;
-        const card = e.target.closest(".news-card");
+        const card = e.target.closest(".news-row");
         if (card && !e.target.closest("a")) { e.preventDefault(); toggle(card); }
       });
     }
