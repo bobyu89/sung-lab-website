@@ -7,8 +7,11 @@ const SITE = {
   nameZh: "護理創新及專科訓練研究室",
   nameEn: "Nursing Innovation & NP Training Lab",
   tagline: "結合專師照護、實證研究、教育創新與科技應用",
+  taglineEn: "Integrating NP practice, evidence-based research, educational innovation, and technology",
   pi: "宋建美 助理教授",
+  piEn: "Chien-Mei Sung, PhD, Assistant Professor",
   dept: "國防醫學大學護理學院",
+  deptEn: "School of Nursing, National Defense Medical University",
   email: "sungcm@mail.ndmutsgh.edu.tw",
   phone: "02-87923100 分機 18765",
   stats: { publications: 23, projects: 12, areas: 4, members: 3 } // members=null → 顯示「招募中」
@@ -29,6 +32,8 @@ const CONFIG = {
    Content is verbatim from the lab's real announcements/publications.
    ========================================================================== */
 const FALLBACK_NEWS = [
+  { date: "2026-08-11", category: "公告", content: "研究生李妍鋅論文計畫口試將於 8 月 11 日（二）11:00–13:00 舉行。", content_en: "Graduate student Yen-Hsin Lee's thesis proposal defense: Tuesday, Aug 11, 11:00–13:00.", link: "" },
+  { date: "2026-08-07", category: "公告", content: "研究生游明勳論文計畫口試將於 8 月 7 日（五）11:00–13:00 舉行。", content_en: "Graduate student Ming-Hsun Yu's thesis proposal defense: Friday, Aug 7, 11:00–13:00.", link: "" },
   { date: "2026-07-06", category: "榮譽", content: "115 年度教育部教學實踐研究計畫「運用自適應學習與多重鷹架式策略之精準臨床推理教學模式融入『專科護理師角色與發展』課程之成效探討」獲核定補助", link: "" },
   { date: "2026-01-15", category: "發表", content: "社區健康照護護理師臨床與成本效益之統合分析刊登於 International Journal of Nursing Studies", link: "" },
   { date: "2025-06-01", category: "發表", content: "3D 列印植入式中心靜脈導管模型培訓研究成果發表", link: "" },
@@ -129,6 +134,7 @@ const FALLBACK_PHOTOS = [
           date: cellValue(entry.row, entry.colIndex, "date"),
           category: cellValue(entry.row, entry.colIndex, "category"),
           content: cellValue(entry.row, entry.colIndex, "content"),
+          content_en: cellValue(entry.row, entry.colIndex, "content_en"),
           link: cellValue(entry.row, entry.colIndex, "link")
         };
       });

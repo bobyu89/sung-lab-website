@@ -91,22 +91,32 @@
   /* ------------------------------------------------------------------------
      2. Hero 標題逐字浮現 + chips 彈入（只有首頁有 .hero__title）
      ------------------------------------------------------------------------ */
+  /* 中文逐字、英文逐詞（避免英文單字被 inline-block 拆行） */
+  var SPLIT_BY_WORD = (document.documentElement.lang || "").toLowerCase().indexOf("en") === 0;
+
   function splitChars(el) {
     var spans = [];
+    function wrap(frag, text) {
+      var s = document.createElement("span");
+      s.textContent = text;
+      s.style.display = "inline-block";
+      frag.appendChild(s);
+      spans.push(s);
+    }
     function walk(node) {
       Array.prototype.slice.call(node.childNodes).forEach(function (child) {
         if (child.nodeType === Node.TEXT_NODE) {
           var frag = document.createDocumentFragment();
-          Array.from(child.textContent).forEach(function (ch) {
-            if (ch.trim() === "") {
-              frag.appendChild(document.createTextNode(ch));
+          var tokens = SPLIT_BY_WORD
+            ? child.textContent.split(/(\s+)/)
+            : Array.from(child.textContent);
+          tokens.forEach(function (token) {
+            if (token === "") return;
+            if (token.trim() === "") {
+              frag.appendChild(document.createTextNode(token));
               return;
             }
-            var s = document.createElement("span");
-            s.textContent = ch;
-            s.style.display = "inline-block";
-            frag.appendChild(s);
-            spans.push(s);
+            wrap(frag, token);
           });
           node.replaceChild(frag, child);
         } else if (child.nodeType === Node.ELEMENT_NODE) {

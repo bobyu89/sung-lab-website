@@ -31,27 +31,65 @@ const LOGO_SVG = `
    Nav items — order is significant
    -------------------------------------------------------------------------- */
 const NAV_ITEMS = [
-  { key: "index", label: "首頁", href: "index.html" },
-  { key: "pi", label: "主持人", href: "pi.html" },
-  { key: "research", label: "研究主題", href: "research.html" },
-  { key: "projects", label: "研究計畫", href: "projects.html" },
-  { key: "publications", label: "成果發表", href: "publications.html" },
-  { key: "members", label: "團隊成員", href: "members.html" },
-  { key: "education", label: "教學資源", href: "education.html" },
-  { key: "collaboration", label: "合作交流", href: "collaboration.html" },
-  { key: "gallery", label: "活動花絮", href: "gallery.html" },
-  { key: "resources", label: "開放資源", href: "resources.html" },
-  { key: "contact", label: "聯絡我們", href: "index.html#contact" }
+  { key: "index", label: "首頁", labelEn: "Home", href: "index.html" },
+  { key: "pi", label: "主持人", labelEn: "PI", href: "pi.html" },
+  { key: "research", label: "研究主題", labelEn: "Research", href: "research.html" },
+  { key: "projects", label: "研究計畫", labelEn: "Projects", href: "projects.html" },
+  { key: "publications", label: "成果發表", labelEn: "Publications", href: "publications.html" },
+  { key: "members", label: "團隊成員", labelEn: "Members", href: "members.html" },
+  { key: "education", label: "教學資源", labelEn: "Teaching", href: "education.html" },
+  { key: "collaboration", label: "合作交流", labelEn: "Collaboration", href: "collaboration.html" },
+  { key: "gallery", label: "活動花絮", labelEn: "Gallery", href: "gallery.html" },
+  { key: "resources", label: "開放資源", labelEn: "Resources", href: "resources.html" },
+  { key: "contact", label: "聯絡我們", labelEn: "Contact", href: "index.html#contact" }
 ];
+
+/* UI strings (zh / en). EN pages live under en/ and call initLayout(page, "en"). */
+const UI_STRINGS = {
+  zh: {
+    cta: "加入我們",
+    langLabel: "EN",
+    langTitle: "Switch to English",
+    contactHeading: "聯絡資訊",
+    quickLinks: "快速連結",
+    friendLinks: "友好連結",
+    friendName: "智慧醫療轉譯及創新實驗室",
+    friendSub: "賀彥中 助理教授",
+    friendHref: "https://bobyu89.github.io/ycho-lab-website/",
+    navAria: "開啟導覽選單"
+  },
+  en: {
+    cta: "Join Us",
+    langLabel: "中文",
+    langTitle: "切換為中文",
+    contactHeading: "Contact",
+    quickLinks: "Quick Links",
+    friendLinks: "Partner Labs",
+    friendName: "Smart Health Translation & Innovation Lab",
+    friendSub: "Dr. Yen-Chung Ho",
+    friendHref: "https://bobyu89.github.io/ycho-lab-website/en/",
+    navAria: "Open navigation menu"
+  }
+};
+
+let SITE_LANG = "zh";
 
 /* --------------------------------------------------------------------------
    Templates
    -------------------------------------------------------------------------- */
 function renderHeader(activePage) {
+  const t = UI_STRINGS[SITE_LANG];
   const navLinks = NAV_ITEMS.map((item) => {
     const isActive = item.key === activePage;
-    return `<li><a class="nav-link${isActive ? " active" : ""}" href="${item.href}"${isActive ? ' aria-current="page"' : ""}>${item.label}</a></li>`;
+    const label = SITE_LANG === "en" ? item.labelEn : item.label;
+    return `<li><a class="nav-link${isActive ? " active" : ""}" href="${item.href}"${isActive ? ' aria-current="page"' : ""}>${label}</a></li>`;
   }).join("");
+
+  /* language switch: zh page -> en/<same>.html ; en page -> ../<same>.html */
+  const pageFile = (activePage === "contact" ? "index" : activePage) + ".html";
+  const langHref = SITE_LANG === "en" ? "../" + pageFile : "en/" + pageFile;
+  const brandName = SITE_LANG === "en" ? SITE.nameEn : SITE.nameZh;
+  const brandSub = SITE_LANG === "en" ? SITE.nameZh : SITE.nameEn;
 
   return `
 <header class="site-header">
@@ -59,11 +97,11 @@ function renderHeader(activePage) {
     <a class="site-header__brand" href="index.html">
       <span class="site-header__logo">${LOGO_SVG}</span>
       <span class="site-header__brandtext">
-        <span class="site-header__name">${SITE.nameZh}</span>
-        <span class="site-header__name-en mono-en">${SITE.nameEn}</span>
+        <span class="site-header__name">${brandName}</span>
+        <span class="site-header__name-en mono-en">${brandSub}</span>
       </span>
     </a>
-    <button type="button" class="hamburger" id="hamburger-btn" aria-expanded="false" aria-label="開啟導覽選單" aria-controls="site-nav">
+    <button type="button" class="hamburger" id="hamburger-btn" aria-expanded="false" aria-label="${t.navAria}" aria-controls="site-nav">
       <span class="hamburger__line"></span>
       <span class="hamburger__line"></span>
       <span class="hamburger__line"></span>
@@ -72,42 +110,48 @@ function renderHeader(activePage) {
       <ul class="site-nav__list">
         ${navLinks}
       </ul>
-      <a class="btn btn-primary btn-cta" href="index.html#contact">加入我們</a>
+      <a class="lang-switch" href="${langHref}" title="${t.langTitle}" lang="${SITE_LANG === "en" ? "zh-Hant" : "en"}">${t.langLabel}</a>
+      <a class="btn btn-primary btn-cta" href="index.html#contact">${t.cta}</a>
     </nav>
   </div>
 </header>`;
 }
 
 function renderFooter() {
+  const t = UI_STRINGS[SITE_LANG];
   const quickLinks = NAV_ITEMS.slice(0, 10)
-    .map((item) => `<li><a href="${item.href}">${item.label}</a></li>`)
+    .map((item) => `<li><a href="${item.href}">${SITE_LANG === "en" ? item.labelEn : item.label}</a></li>`)
     .join("");
+  const footName = SITE_LANG === "en" ? SITE.nameEn : SITE.nameZh;
+  const footTagline = SITE_LANG === "en" ? SITE.taglineEn : SITE.tagline;
+  const footPi = SITE_LANG === "en" ? SITE.piEn : SITE.pi;
+  const footDept = SITE_LANG === "en" ? SITE.deptEn : SITE.dept;
 
   return `
 <footer class="site-footer section--pink">
   <div class="container site-footer__inner">
     <div class="site-footer__brand">
       <span class="site-footer__logo">${LOGO_SVG}</span>
-      <p class="site-footer__name">${SITE.nameZh}</p>
-      <p class="site-footer__tagline">${SITE.tagline}</p>
+      <p class="site-footer__name">${footName}</p>
+      <p class="site-footer__tagline">${footTagline}</p>
     </div>
     <div class="site-footer__contact">
-      <h3>聯絡資訊</h3>
-      <p>${SITE.pi}</p>
-      <p>${SITE.dept}</p>
+      <h3>${t.contactHeading}</h3>
+      <p>${footPi}</p>
+      <p>${footDept}</p>
       <p>${SITE.phone}</p>
       <p><a href="mailto:${SITE.email}">${SITE.email}</a></p>
     </div>
     <div class="site-footer__links">
-      <h3>快速連結</h3>
+      <h3>${t.quickLinks}</h3>
       <ul>
         ${quickLinks}
       </ul>
     </div>
     <div class="site-footer__links">
-      <h3>友好連結</h3>
+      <h3>${t.friendLinks}</h3>
       <ul>
-        <li><a href="https://bobyu89.github.io/ycho-lab-website/" target="_blank" rel="noopener">智慧醫療轉譯及創新實驗室<span class="friend-sub">賀彥中 助理教授</span></a></li>
+        <li><a href="${t.friendHref}" target="_blank" rel="noopener">${t.friendName}<span class="friend-sub">${t.friendSub}</span></a></li>
       </ul>
     </div>
   </div>
@@ -132,7 +176,8 @@ function renderLightbox() {
 /* --------------------------------------------------------------------------
    initLayout — injects header, footer, and lightbox DOM; wires interactions
    -------------------------------------------------------------------------- */
-function initLayout(activePage) {
+function initLayout(activePage, lang) {
+  SITE_LANG = lang === "en" ? "en" : "zh";
   document.body.insertAdjacentHTML("afterbegin", renderHeader(activePage));
   document.body.insertAdjacentHTML("beforeend", renderFooter());
   document.body.insertAdjacentHTML("beforeend", renderLightbox());
@@ -169,6 +214,27 @@ function initLayout(activePage) {
       }
     });
   }
+}
+
+/* --------------------------------------------------------------------------
+   News ticker - homepage slim marquee under the header; renders only when
+   #news-ticker exists. Content duplicated x2 for the CSS translateX(-50%)
+   seamless loop; hover pauses via CSS.
+   -------------------------------------------------------------------------- */
+function renderNewsTicker(items) {
+  const ticker = document.getElementById("news-ticker");
+  if (!ticker || !items || !items.length) return;
+  const esc = (str) => String(str || "").replace(/[&<>"']/g, (c) =>
+    ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const top = items.slice(0, 5);
+  const seg = top.map((n) => {
+    const text = (SITE_LANG === "en" && n.content_en) ? n.content_en : n.content;
+    return `<span class="news-ticker__item"><span class="news-ticker__date mono-en">${esc(n.date)}</span>${esc(text)}</span>`;
+  }).join("");
+  ticker.innerHTML = `<a class="news-ticker__link" href="#news" aria-label="${SITE_LANG === "en" ? "Latest news" : "最新消息"}">` +
+    `<div class="news-ticker__track">${seg}${seg}</div></a>`;
+  const track = ticker.querySelector(".news-ticker__track");
+  if (track) track.style.animationDuration = Math.max(24, top.length * 9) + "s";
 }
 
 /* --------------------------------------------------------------------------
