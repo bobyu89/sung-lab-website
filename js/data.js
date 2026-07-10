@@ -192,8 +192,25 @@ const FALLBACK_PHOTOS = [
     }
   };
 
+  /* 檔名開頭含 YYYY-MM-DD 時依活動日期新到舊排序；無日期者排最後 */
+  function sortPhotosByCaptionDate(photos) {
+    function dateOf(p) {
+      const m = String(p.caption || "").match(/(\d{4})[-\/.](\d{1,2})[-\/.](\d{1,2})/);
+      return m ? new Date(+m[1], +m[2] - 1, +m[3]).getTime() : null;
+    }
+    return photos.slice().sort(function (a, b) {
+      const da = dateOf(a);
+      const db = dateOf(b);
+      if (da === null && db === null) return 0;
+      if (da === null) return 1;
+      if (db === null) return -1;
+      return db - da;
+    });
+  }
+
   function applyLimit(photos, limit) {
-    if (!limit) return photos.slice();
-    return photos.slice(0, limit);
+    const sorted = sortPhotosByCaptionDate(photos);
+    if (!limit) return sorted;
+    return sorted.slice(0, limit);
   }
 })();
