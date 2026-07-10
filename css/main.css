@@ -2128,3 +2128,64 @@ body.lightbox-open {
     text-align: center;
   }
 }
+
+/* --------------------------------------------------------------------------
+   首頁主持人簡介卡（讓訪客一眼看出是誰的研究室）
+   -------------------------------------------------------------------------- */
+.home-pi {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding: 32px;
+}
+.home-pi__avatar-wrap {
+  flex: 0 0 auto;
+}
+.home-pi__avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.home-pi__body {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.home-pi__name {
+  margin: 0 0 4px;
+  font-size: 1.4rem;
+  color: var(--ink);
+}
+.home-pi__en {
+  margin-left: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--gray);
+}
+.home-pi__role {
+  margin: 0 0 12px;
+  color: var(--pink-deep);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+.home-pi__desc {
+  margin: 0 0 16px;
+  color: var(--gray);
+  line-height: 1.65;
+}
+.home-pi__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+@media (max-width: 640px) {
+  .home-pi {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+  .home-pi__chips {
+    justify-content: center;
+  }
+}
