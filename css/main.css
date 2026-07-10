@@ -423,28 +423,150 @@ img.avatar {
   }
 }
 
+/* --------------------------------------------------------------------------
+   Nav dropdown groups（桌面）
+   -------------------------------------------------------------------------- */
+.nav-item {
+  position: relative;
+}
+
+.nav-link--parent {
+  background: none;
+  border: none;
+  padding: 6px 2px;
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--ink);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.nav-caret {
+  font-size: 0.6rem;
+  transition: transform 0.2s ease;
+}
+
+.nav-item--dropdown:hover .nav-caret,
+.nav-item--dropdown:focus-within .nav-caret {
+  transform: rotate(180deg);
+}
+
+.nav-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding-top: 12px;
+  display: none;
+  z-index: 150;
+}
+
+.nav-item--dropdown:hover .nav-dropdown,
+.nav-item--dropdown:focus-within .nav-dropdown {
+  display: block;
+}
+
+.nav-dropdown__card {
+  min-width: 168px;
+  background: var(--white);
+  border-radius: 14px;
+  box-shadow: var(--shadow-card);
+  padding: 8px;
+}
+
+.nav-dropdown__link {
+  display: block;
+  padding: 9px 14px;
+  border-radius: 9px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.nav-dropdown__link:hover,
+.nav-dropdown__link.active {
+  background: var(--pink-bg);
+  color: var(--pink-deep);
+}
+
+/* 抽屜關閉鈕與遮罩（桌面隱藏） */
+.drawer-close {
+  display: none;
+}
+
+.nav-backdrop {
+  display: none;
+}
+
 @media (max-width: 899px) {
   .hamburger {
     display: flex;
   }
 
+  /* 右側滑出抽屜選單 */
   .site-nav {
-    position: absolute;
-    top: 100%;
-    left: 0;
+    position: fixed;
+    top: 0;
     right: 0;
+    bottom: 0;
+    left: auto;
+    width: min(320px, 84vw);
     flex-direction: column;
     align-items: stretch;
     gap: 0;
     background: var(--white);
-    box-shadow: 0 12px 24px rgba(55, 65, 81, 0.1);
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
+    box-shadow: -16px 0 40px rgba(23, 34, 59, 0.22);
+    transform: translateX(105%);
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+    padding: 64px 0 24px;
+    z-index: 1200;
   }
 
   .site-nav--open {
-    max-height: 600px;
+    transform: translateX(0);
+  }
+
+  .drawer-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: var(--pink-bg);
+    color: var(--ink);
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .nav-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(23, 34, 59, 0.45);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 1100;
+  }
+
+  .nav-backdrop--show {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  body.nav-open {
+    overflow: hidden;
   }
 
   .site-nav__list {
@@ -465,6 +587,46 @@ img.avatar {
 
   .nav-link::after {
     display: none;
+  }
+
+  /* 抽屜內：群組展開顯示，父項為分類標題 */
+  .nav-link--parent {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 14px 0 6px;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    color: var(--gray);
+    cursor: default;
+  }
+
+  .nav-caret {
+    display: none;
+  }
+
+  .nav-dropdown {
+    position: static;
+    transform: none;
+    padding: 0;
+    display: block;
+  }
+
+  .nav-dropdown__card {
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0 0 6px;
+    min-width: 0;
+    background: transparent;
+  }
+
+  .nav-dropdown__link {
+    padding: 10px 0 10px 14px;
+    white-space: normal;
+  }
+
+  .nav-item--dropdown {
+    padding-bottom: 4px;
   }
 
   .lang-switch {

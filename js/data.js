@@ -124,11 +124,23 @@ const FALLBACK_PHOTOS = [
   /* ------------------------------------------------------------------------
      fetchNews — reads "news" sheet, columns: date/category/content/link
      ------------------------------------------------------------------------ */
+  /* 首頁最新消息只顯示一年內（含未來日期的預告）；若一年內沒有任何
+     消息，退回顯示全部以免版面空白。 */
+  function filterRecentNews(items) {
+    const cutoff = new Date();
+    cutoff.setFullYear(cutoff.getFullYear() - 1);
+    const recent = items.filter(function (n) {
+      const d = new Date(n.date);
+      return !isNaN(d) && d >= cutoff;
+    });
+    return recent.length ? recent : items;
+  }
+
   window.fetchNews = async function fetchNews() {
     try {
-      if (!CONFIG.SHEET_ID) return FALLBACK_NEWS;
+      if (!CONFIG.SHEET_ID) return filterRecentNews(FALLBACK_NEWS);
       const rows = await fetchGvizSheet();
-      if (!rows.length) return FALLBACK_NEWS;
+      if (!rows.length) return filterRecentNews(FALLBACK_NEWS);
       const news = rows.map(function (entry) {
         return {
           date: cellValue(entry.row, entry.colIndex, "date"),
@@ -138,9 +150,9 @@ const FALLBACK_PHOTOS = [
           link: cellValue(entry.row, entry.colIndex, "link")
         };
       });
-      return sortByDateDesc(news);
+      return filterRecentNews(sortByDateDesc(news));
     } catch (err) {
-      return FALLBACK_NEWS;
+      return filterRecentNews(FALLBACK_NEWS);
     }
   };
 

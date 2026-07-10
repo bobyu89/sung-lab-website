@@ -33,14 +33,22 @@ const LOGO_SVG = `
 const NAV_ITEMS = [
   { key: "index", label: "首頁", labelEn: "Home", href: "index.html" },
   { key: "pi", label: "主持人", labelEn: "PI", href: "pi.html" },
-  { key: "research", label: "研究主題", labelEn: "Research", href: "research.html" },
-  { key: "projects", label: "研究計畫", labelEn: "Projects", href: "projects.html" },
-  { key: "publications", label: "成果發表", labelEn: "Publications", href: "publications.html" },
+  { key: "research-group", label: "研究", labelEn: "Research", children: [
+    { key: "research", label: "研究主題", labelEn: "Research Focus", href: "research.html" },
+    { key: "projects", label: "研究計畫", labelEn: "Projects", href: "projects.html" }
+  ] },
+  { key: "output-group", label: "研究成果", labelEn: "Output", children: [
+    { key: "publications", label: "成果發表", labelEn: "Publications", href: "publications.html" },
+    { key: "conferences", label: "研討會論文", labelEn: "Conference Papers", href: "conferences.html" },
+    { key: "awards", label: "得獎紀錄", labelEn: "Awards", href: "awards.html" }
+  ] },
   { key: "members", label: "團隊成員", labelEn: "Members", href: "members.html" },
-  { key: "education", label: "教學資源", labelEn: "Teaching", href: "education.html" },
-  { key: "collaboration", label: "合作交流", labelEn: "Collaboration", href: "collaboration.html" },
+  { key: "resources-group", label: "資源", labelEn: "Resources", children: [
+    { key: "education", label: "教學資源", labelEn: "Teaching", href: "education.html" },
+    { key: "collaboration", label: "合作交流", labelEn: "Collaboration", href: "collaboration.html" },
+    { key: "resources", label: "開放資源", labelEn: "Open Resources", href: "resources.html" }
+  ] },
   { key: "gallery", label: "活動花絮", labelEn: "Gallery", href: "gallery.html" },
-  { key: "resources", label: "開放資源", labelEn: "Resources", href: "resources.html" },
   { key: "contact", label: "聯絡我們", labelEn: "Contact", href: "index.html#contact" }
 ];
 
@@ -80,9 +88,20 @@ let SITE_LANG = "zh";
 function renderHeader(activePage) {
   const t = UI_STRINGS[SITE_LANG];
   const navLinks = NAV_ITEMS.map((item) => {
-    const isActive = item.key === activePage;
     const label = SITE_LANG === "en" ? item.labelEn : item.label;
-    return `<li><a class="nav-link${isActive ? " active" : ""}" href="${item.href}"${isActive ? ' aria-current="page"' : ""}>${label}</a></li>`;
+    if (item.children) {
+      const childActive = item.children.some((c) => c.key === activePage);
+      const childLinks = item.children.map((c) => {
+        const cLabel = SITE_LANG === "en" ? c.labelEn : c.label;
+        const isActive = c.key === activePage;
+        return `<li><a class="nav-dropdown__link${isActive ? " active" : ""}" href="${c.href}"${isActive ? ' aria-current="page"' : ""}>${cLabel}</a></li>`;
+      }).join("");
+      return `<li class="nav-item nav-item--dropdown">` +
+        `<button type="button" class="nav-link nav-link--parent${childActive ? " active" : ""}" aria-haspopup="true" aria-expanded="false">${label}<span class="nav-caret" aria-hidden="true">▾</span></button>` +
+        `<div class="nav-dropdown"><ul class="nav-dropdown__card">${childLinks}</ul></div></li>`;
+    }
+    const isActive = item.key === activePage;
+    return `<li class="nav-item"><a class="nav-link${isActive ? " active" : ""}" href="${item.href}"${isActive ? ' aria-current="page"' : ""}>${label}</a></li>`;
   }).join("");
 
   /* language switch: zh page -> en/<same>.html ; en page -> ../<same>.html */
@@ -107,6 +126,7 @@ function renderHeader(activePage) {
       <span class="hamburger__line"></span>
     </button>
     <nav class="site-nav" id="site-nav">
+      <button type="button" class="drawer-close" id="drawer-close" aria-label="${t.navAria}">&times;</button>
       <ul class="site-nav__list">
         ${navLinks}
       </ul>
@@ -114,12 +134,18 @@ function renderHeader(activePage) {
       <a class="btn btn-primary btn-cta" href="index.html#contact">${t.cta}</a>
     </nav>
   </div>
+  <div class="nav-backdrop" id="nav-backdrop" aria-hidden="true"></div>
 </header>`;
 }
 
 function renderFooter() {
   const t = UI_STRINGS[SITE_LANG];
-  const quickLinks = NAV_ITEMS.slice(0, 10)
+  const flatNav = [];
+  NAV_ITEMS.forEach((item) => {
+    if (item.children) flatNav.push(...item.children);
+    else if (item.key !== "contact") flatNav.push(item);
+  });
+  const quickLinks = flatNav
     .map((item) => `<li><a href="${item.href}">${SITE_LANG === "en" ? item.labelEn : item.label}</a></li>`)
     .join("");
   const footName = SITE_LANG === "en" ? SITE.nameEn : SITE.nameZh;
@@ -184,21 +210,28 @@ function initLayout(activePage, lang) {
 
   const hamburger = document.getElementById("hamburger-btn");
   const nav = document.getElementById("site-nav");
+  const backdrop = document.getElementById("nav-backdrop");
+  const drawerClose = document.getElementById("drawer-close");
 
   if (hamburger && nav) {
+    const setOpen = (open) => {
+      hamburger.setAttribute("aria-expanded", String(open));
+      nav.classList.toggle("site-nav--open", open);
+      if (backdrop) backdrop.classList.toggle("nav-backdrop--show", open);
+      document.body.classList.toggle("nav-open", open);
+    };
+
     hamburger.addEventListener("click", () => {
-      const expanded = hamburger.getAttribute("aria-expanded") === "true";
-      hamburger.setAttribute("aria-expanded", String(!expanded));
-      nav.classList.toggle("site-nav--open", !expanded);
-      hamburger.setAttribute("aria-label", expanded ? "開啟導覽選單" : "關閉導覽選單");
+      setOpen(hamburger.getAttribute("aria-expanded") !== "true");
+    });
+    if (backdrop) backdrop.addEventListener("click", () => setOpen(false));
+    if (drawerClose) drawerClose.addEventListener("click", () => setOpen(false));
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && nav.classList.contains("site-nav--open")) setOpen(false);
     });
 
-    nav.querySelectorAll(".nav-link, .btn-cta").forEach((link) => {
-      link.addEventListener("click", () => {
-        hamburger.setAttribute("aria-expanded", "false");
-        hamburger.setAttribute("aria-label", "開啟導覽選單");
-        nav.classList.remove("site-nav--open");
-      });
+    nav.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => setOpen(false));
     });
   }
 
