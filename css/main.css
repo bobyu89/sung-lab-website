@@ -2194,7 +2194,12 @@ body.lightbox-open {
    返回鍵 — 由 components.js 注入於 header 下方（首頁以外每頁）
    -------------------------------------------------------------------------- */
 .page-back {
+  text-align: left;
+  margin-bottom: 24px;
+}
+.page-back--bar {
   padding: 16px 0 0;
+  margin-bottom: 0;
 }
 .back-link {
   display: inline-flex;

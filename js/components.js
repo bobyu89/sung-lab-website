@@ -210,16 +210,20 @@ function initLayout(activePage, lang) {
   document.body.insertAdjacentHTML("beforeend", renderFooter());
   document.body.insertAdjacentHTML("beforeend", renderLightbox());
 
-  /* 返回鍵 — 首頁以外的每一頁都注入，回上一頁（無歷史則回首頁） */
+  /* 返回鍵 — 首頁以外的每一頁都注入，置於頁面 hero 內左上角、與內容切齊；
+     回上一頁（無歷史則回首頁） */
   if (activePage !== "index" && activePage !== "contact") {
     const t = UI_STRINGS[SITE_LANG];
-    const header = document.querySelector(".site-header");
-    const backHtml =
-      `<div class="page-back"><div class="container">` +
+    const btn =
       `<button type="button" class="back-link" id="page-back">` +
-      `<span class="back-link__arrow" aria-hidden="true">←</span>${t.back}</button>` +
-      `</div></div>`;
-    if (header) header.insertAdjacentHTML("afterend", backHtml);
+      `<span class="back-link__arrow" aria-hidden="true">←</span>${t.back}</button>`;
+    const heroInner = document.querySelector(".page-hero__inner");
+    if (heroInner) {
+      heroInner.insertAdjacentHTML("afterbegin", `<div class="page-back">${btn}</div>`);
+    } else {
+      const header = document.querySelector(".site-header");
+      if (header) header.insertAdjacentHTML("afterend", `<div class="page-back page-back--bar"><div class="container">${btn}</div></div>`);
+    }
     const backBtn = document.getElementById("page-back");
     if (backBtn) {
       backBtn.addEventListener("click", () => {
