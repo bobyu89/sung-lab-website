@@ -8,6 +8,7 @@
    2. 首頁 Hero 標題逐字浮現 + chips 彈入
    3. 章節標題圖示彈跳（scroll 觸發）
    4. 燈箱開啟縮放淡入
+   5. 導覽列進場（每個瀏覽階段一次）
 
    anime.js 未載入或使用者偏好減少動態時，全部靜默跳過，網站照常運作。
    ========================================================================== */
@@ -191,11 +192,45 @@
     };
   }
 
+  /* ------------------------------------------------------------------------
+     5. 導覽列進場 — 連結依序落下、CTA 彈入；每個瀏覽階段只播一次，
+        換頁時不重複播放以免干擾
+     ------------------------------------------------------------------------ */
+  function initNavIntro() {
+    var links = document.querySelectorAll(".site-nav__list .nav-link");
+    if (!links.length) return;
+    if (window.matchMedia("(max-width: 899px)").matches) return; /* 行動版收在漢堡選單 */
+    try {
+      if (sessionStorage.getItem("nav-intro-played")) return;
+      sessionStorage.setItem("nav-intro-played", "1");
+    } catch (e) {
+      return; /* 無痕模式下 sessionStorage 不可用時直接略過 */
+    }
+    animate(links, {
+      opacity: [0, 1],
+      y: [-10, 0],
+      duration: 450,
+      delay: stagger(40),
+      ease: "out(3)"
+    });
+    var cta = document.querySelector(".btn-cta");
+    if (cta) {
+      animate(cta, {
+        opacity: [0, 1],
+        scale: [0.7, 1],
+        duration: 500,
+        delay: links.length * 40 + 120,
+        ease: "outBack"
+      });
+    }
+  }
+
   function boot() {
     initEcgDraw();
     initHeroIntro();
     initIconPop();
     initLightboxPop();
+    initNavIntro();
   }
 
   if (document.readyState === "loading") {

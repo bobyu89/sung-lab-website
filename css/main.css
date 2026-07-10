@@ -345,7 +345,7 @@ img.avatar {
   color: var(--pink-deep);
 }
 
-.nav-link.active::after {
+.nav-link::after {
   content: "";
   position: absolute;
   left: 0;
@@ -354,6 +354,31 @@ img.avatar {
   height: 3px;
   border-radius: var(--radius-pill);
   background: var(--grad-brand);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.nav-link.active::after,
+.nav-link:hover::after,
+.nav-link:focus-visible::after {
+  transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .nav-link::after {
+    transition: transform 0.25s ease;
+  }
+}
+
+/* Logo 微互動 — 滑過品牌區時輕輕傾斜 */
+@media (prefers-reduced-motion: no-preference) {
+  .site-header__logo svg {
+    transition: transform 0.35s ease;
+  }
+
+  .site-header__brand:hover .site-header__logo svg {
+    transform: rotate(10deg) scale(1.08);
+  }
 }
 
 .btn-cta {
@@ -366,6 +391,36 @@ img.avatar {
 
 .btn-cta::after {
   content: none;
+}
+
+/* CTA 光澤 — hover 時一道亮光掃過按鈕 */
+.btn-cta {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-cta::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -80%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transform: skewX(-20deg);
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .btn-cta:hover::before {
+    animation: cta-shine 0.7s ease;
+  }
+}
+
+@keyframes cta-shine {
+  to {
+    left: 130%;
+  }
 }
 
 @media (max-width: 899px) {
@@ -408,7 +463,7 @@ img.avatar {
     padding: 14px 0;
   }
 
-  .nav-link.active::after {
+  .nav-link::after {
     display: none;
   }
 
