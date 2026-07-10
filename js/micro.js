@@ -1,7 +1,7 @@
 /* ==========================================================================
    Micro-interactions — anime.js v4 漸進增強
    兩站共用同一份檔案（sung-lab-website / ycho-lab-website）：
-   品牌色自動從 CSS 變數讀取（--cyan 或 --pink），不需要改任何參數。
+   描線顏色自動從 CSS 變數讀取（--ecg、--cyan 或 --pink），不需要改任何參數。
 
    包含：
    1. ECG 分隔線描線動畫（scroll 觸發，svg.createDrawable）
@@ -20,9 +20,9 @@
   var animate = anime.animate;
   var stagger = anime.stagger;
 
-  /* 品牌主色：ycho 用 --cyan、sung 用 --pink，取存在的那個 */
+  /* ECG 描線顏色：優先讀 --ecg（ycho 定義為臨床綠），否則退回品牌色變數 */
   var rootStyle = getComputedStyle(document.documentElement);
-  var brand = (rootStyle.getPropertyValue("--cyan") || rootStyle.getPropertyValue("--pink") || "#888").trim();
+  var brand = (rootStyle.getPropertyValue("--ecg") || rootStyle.getPropertyValue("--cyan") || rootStyle.getPropertyValue("--pink") || "#888").trim();
 
   /* ------------------------------------------------------------------------
      1. ECG 分隔線描線 — 把靜態背景圖換成內嵌 SVG，進入視窗時畫出心電圖
