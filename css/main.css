@@ -2189,3 +2189,40 @@ body.lightbox-open {
     justify-content: center;
   }
 }
+
+/* --------------------------------------------------------------------------
+   返回鍵 — 由 components.js 注入於 header 下方（首頁以外每頁）
+   -------------------------------------------------------------------------- */
+.page-back {
+  padding: 16px 0 0;
+}
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 1.5px solid var(--pink);
+  border-radius: var(--radius-pill);
+  color: var(--pink-deep);
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 7px 16px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.back-link:hover {
+  background: var(--pink-bg);
+}
+.back-link:hover .back-link__arrow {
+  transform: translateX(-3px);
+}
+.back-link:focus-visible {
+  outline: 2px solid var(--pink-deep);
+  outline-offset: 2px;
+}
+.back-link__arrow {
+  font-size: 1.05rem;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}

@@ -38,9 +38,9 @@ const NAV_ITEMS = [
     { key: "projects", label: "研究計畫", labelEn: "Projects", href: "projects.html" }
   ] },
   { key: "output-group", label: "研究成果", labelEn: "Output", children: [
+    { key: "awards", label: "得獎紀錄", labelEn: "Awards", href: "awards.html" },
     { key: "publications", label: "成果發表", labelEn: "Publications", href: "publications.html" },
-    { key: "conferences", label: "研討會論文", labelEn: "Conference Papers", href: "conferences.html" },
-    { key: "awards", label: "得獎紀錄", labelEn: "Awards", href: "awards.html" }
+    { key: "conferences", label: "研討會論文", labelEn: "Conference Papers", href: "conferences.html" }
   ] },
   { key: "members", label: "團隊成員", labelEn: "Members", href: "members.html" },
   { key: "resources-group", label: "資源", labelEn: "Resources", children: [
@@ -64,7 +64,8 @@ const UI_STRINGS = {
     friendName: "智慧醫療轉譯及創新實驗室",
     friendSub: "賀彥中 助理教授",
     friendHref: "https://bobyu89.github.io/ycho-lab-website/",
-    navAria: "開啟導覽選單"
+    navAria: "開啟導覽選單",
+    back: "返回"
   },
   en: {
     cta: "Join Us",
@@ -76,7 +77,8 @@ const UI_STRINGS = {
     friendName: "Smart Health Translation & Innovation Lab",
     friendSub: "Dr. Yen-Chung Ho",
     friendHref: "https://bobyu89.github.io/ycho-lab-website/en/",
-    navAria: "Open navigation menu"
+    navAria: "Open navigation menu",
+    back: "Back"
   }
 };
 
@@ -207,6 +209,25 @@ function initLayout(activePage, lang) {
   document.body.insertAdjacentHTML("afterbegin", renderHeader(activePage));
   document.body.insertAdjacentHTML("beforeend", renderFooter());
   document.body.insertAdjacentHTML("beforeend", renderLightbox());
+
+  /* 返回鍵 — 首頁以外的每一頁都注入，回上一頁（無歷史則回首頁） */
+  if (activePage !== "index" && activePage !== "contact") {
+    const t = UI_STRINGS[SITE_LANG];
+    const header = document.querySelector(".site-header");
+    const backHtml =
+      `<div class="page-back"><div class="container">` +
+      `<button type="button" class="back-link" id="page-back">` +
+      `<span class="back-link__arrow" aria-hidden="true">←</span>${t.back}</button>` +
+      `</div></div>`;
+    if (header) header.insertAdjacentHTML("afterend", backHtml);
+    const backBtn = document.getElementById("page-back");
+    if (backBtn) {
+      backBtn.addEventListener("click", () => {
+        if (window.history.length > 1) window.history.back();
+        else window.location.href = "index.html";
+      });
+    }
+  }
 
   const hamburger = document.getElementById("hamburger-btn");
   const nav = document.getElementById("site-nav");
