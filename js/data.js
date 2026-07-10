@@ -22,7 +22,7 @@ const SITE = {
    Empty strings mean "not configured" → fetchers resolve to FALLBACK_* data.
    ========================================================================== */
 const CONFIG = {
-  SHEET_ID: "1PobbRy0ovN04ORWiXl-3-SM38JVQv8ic9mrVgjh4gHY", // 網站最新消息（建美老師研究室管理區）
+  SHEET_ID: "1ni8NrLj3q0ItcYfs_35N4qBN-Qu-xO-37n4IJFeebRc", // 網站最新消息（含英文欄）（建美老師研究室管理區）
   DRIVE_FOLDER_ID: "1cgZTh2naeiNb9TbhxjfKLm0H-GOrEY3Z",     // 活動照片資料夾（尚缺 API 金鑰，未啟用）
   DRIVE_API_KEY: ""
 };
