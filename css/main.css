@@ -1305,6 +1305,104 @@ body.lightbox-open {
 }
 
 /* --------------------------------------------------------------------------
+   研究室一覽補充標籤列（首頁 Research at a Glance）
+   -------------------------------------------------------------------------- */
+.glance-tags {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.glance-tags__row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.glance-tags__label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--gray);
+  flex-shrink: 0;
+  min-width: 4.5em;
+}
+
+/* --------------------------------------------------------------------------
+   四大領域視覺卡片（research.html）— 可展開細節
+   -------------------------------------------------------------------------- */
+.area-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.area-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.area-card__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.area-card__chips .chip {
+  font-size: 0.75rem;
+  padding: 4px 12px;
+}
+
+.area-card__more summary {
+  cursor: pointer;
+  color: var(--pink-deep);
+  font-weight: 700;
+  font-size: 0.9rem;
+  list-style: none;
+}
+
+.area-card__more summary::-webkit-details-marker {
+  display: none;
+}
+
+.area-card__more summary::after {
+  content: " ▾";
+  font-size: 0.75em;
+}
+
+.area-card__more[open] summary::after {
+  content: " ▴";
+}
+
+.area-card__detail h4 {
+  margin: 16px 0 6px;
+  font-size: 0.8rem;
+  color: var(--gray);
+  letter-spacing: 0.06em;
+}
+
+.area-card__detail p,
+.area-card__detail ul {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--ink);
+  line-height: 1.7;
+}
+
+.area-card__detail ul {
+  padding-left: 1.2em;
+  list-style: disc;
+}
+
+@media (max-width: 767px) {
+  .area-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --------------------------------------------------------------------------
    16. Team grid (研究團隊)
    -------------------------------------------------------------------------- */
 .team-grid {

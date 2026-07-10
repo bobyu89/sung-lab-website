@@ -23,9 +23,9 @@
       <div class="hero__copy reveal">
         <span class="chip">護理創新及專科訓練研究室</span>
         <h1 class="hero__title">
-          以護理、<span class="hl-pink">研究與創新</span>，打造更<span class="hl-orange">智慧</span>的臨床未來
+          以<span class="hl-pink">護理科學、臨床教育與科技應用</span>，培育<span class="hl-orange">下一代專科護理人才</span>
         </h1>
-        <p class="hero__subtitle">結合專師照護、實證研究、教育創新與科技應用。以實證推動照護品質，提升健康福祉。</p>
+        <p class="hero__subtitle">結合專師照護、實證研究、教育創新與科技應用，以實證推動照護品質、打造更智慧的臨床未來。</p>
         <div class="hero__chips">
           <span class="chip">實證為本</span>
           <span class="chip">創新驅動</span>
@@ -47,9 +47,82 @@
 
 
   <!-- ==========================================================================
+       研究室一覽 (Research at a Glance)
+       ========================================================================== -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="section-header__title">
+          <span class="section-header__icon">
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <linearGradient id="glance-logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#FF79BC"/>
+                  <stop offset="100%" stop-color="#FFA042"/>
+                </linearGradient>
+              </defs>
+              <g fill="url(#glance-logo-grad)">
+                <rect x="24" y="4" width="16" height="24" rx="8"/>
+                <rect x="24" y="36" width="16" height="24" rx="8"/>
+                <rect x="4" y="24" width="24" height="16" rx="8"/>
+                <rect x="36" y="24" width="24" height="16" rx="8"/>
+                <rect x="24" y="24" width="16" height="16" rx="6"/>
+              </g>
+            </svg>
+          </span>
+          研究室一覽
+        </h2>
+        <span class="mono-en">RESEARCH AT A GLANCE</span>
+      </div>
+
+      <div class="metric-grid">
+        <div class="card metric-card reveal" data-reveal-group="glance">
+          <span class="metric-card__number" data-count="4">0</span>
+          <span class="metric-card__label">核心研究領域</span>
+          <span class="metric-card__label-en mono-en">Research Domains</span>
+        </div>
+        <div class="card metric-card reveal" data-reveal-group="glance">
+          <span class="metric-card__number" data-count="25">0</span>
+          <span class="metric-card__label">期刊論文</span>
+          <span class="metric-card__label-en mono-en">Journal Articles</span>
+        </div>
+        <div class="card metric-card reveal" data-reveal-group="glance">
+          <span class="metric-card__number metric-card__number--text">RCT・Meta-analysis</span>
+          <span class="metric-card__label">研究方法</span>
+          <span class="metric-card__label-en mono-en">Methods</span>
+        </div>
+        <div class="card metric-card reveal" data-reveal-group="glance">
+          <span class="metric-card__number metric-card__number--text">Evidence into Practice</span>
+          <span class="metric-card__label">共同願景</span>
+          <span class="metric-card__label-en mono-en">Shared Vision</span>
+        </div>
+      </div>
+
+      <div class="glance-tags reveal">
+        <div class="glance-tags__row">
+          <span class="glance-tags__label">教學特色</span>
+          <span class="chip">自適應學習</span>
+          <span class="chip">多重鷹架策略</span>
+          <span class="chip">3D 列印</span>
+          <span class="chip">教育性桌遊</span>
+        </div>
+        <div class="glance-tags__row">
+          <span class="glance-tags__label">合作對象</span>
+          <span class="chip">高齡者</span>
+          <span class="chip">護理師</span>
+          <span class="chip">專科護理師</span>
+          <span class="chip">臨床照護團隊</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="ecg-divider"></div>
+
+  <!-- ==========================================================================
        最新消息 (Latest News)
        ========================================================================== -->
-  <section class="section" id="news">
+  <section class="section section--pink" id="news">
     <div class="container">
       <div class="section-header reveal">
         <h2 class="section-header__title">
@@ -70,9 +143,9 @@
               </g>
             </svg>
           </span>
-          最新消息
+          消息與成果
         </h2>
-        <span class="mono-en">LATEST NEWS</span>
+        <span class="mono-en">NEWS &amp; ACHIEVEMENTS</span>
       </div>
 
       <div class="news-grid" id="news-grid" data-reveal-group="news">
@@ -302,6 +375,7 @@
     }
 
     initReveal();
+    initCounters();
     renderNews();
     initContactForm();
   </script>
