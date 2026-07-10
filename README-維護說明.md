@@ -154,15 +154,16 @@ const SITE = {
 ```
 
 - 要改研究室名稱：改 `nameZh`（中文）、`nameEn`（英文）。**請注意**：`SITE.nameZh`／`SITE.nameEn` 只會更新網站畫面上「動態帶入」的地方（例如頁尾的研究室名稱、聯絡資訊區塊），**不會自動改到**下列幾個寫死在各檔案裡的地方，如果要正式改名，需要工程人員一併手動修改：
-  - 7 個頁面（`index.html`、`research.html`、`publications.html`、`education.html`、`members.html`、`collaboration.html`、`resources.html`）各自 `<head>` 裡的 `<title>` 標籤
+  - 9 個頁面（`index.html`、`pi.html`、`research.html`、`projects.html`、`publications.html`、`education.html`、`members.html`、`collaboration.html`、`resources.html`）各自 `<head>` 裡的 `<title>` 標籤
   - `index.html` 首頁 Hero 區塊的膠囊標籤（`<span class="chip">護理創新及專科訓練研究室</span>`）
   - `js/components.js` 裡 `LOGO_SVG` 的 `aria-label`（Logo 圖形的無障礙標籤文字）
 - 要改標語：改 `tagline`
 - 要改老師稱謂：改 `pi`
 - 要改系所單位：改 `dept`
 - 要改 Email／電話：改 `email`／`phone`
-- 要改統計數字：改 `stats` 裡的數字，例如發表著作篇數增加了，就把 `publications: 23` 改成新的數字
-  - `members` 目前是 `null`，代表首頁會顯示「招募中」；等確定團隊人數後，把 `null` 改成實際數字（例如 `members: 5`）即可改顯示成「5」
+- `stats` 統計數字：2026-07-10 改版後首頁已不再顯示「研究成果總覽」統計區塊（依老師「一個介面不要太多資訊」的原則），此欄位目前僅保留備用，改動不影響畫面
+
+> **2026-07-10 版面調整**：主持人資料獨立為 `pi.html`、研究計畫獨立為 `projects.html`；首頁精簡為「Hero＋最新消息＋聯絡我們」；`members.html` 只放研究團隊；`research.html` 只放四大研究領域。
 
 改完存檔後，重新部署網站（見第 6 節）即可看到更新。
 

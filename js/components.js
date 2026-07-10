@@ -32,10 +32,12 @@ const LOGO_SVG = `
    -------------------------------------------------------------------------- */
 const NAV_ITEMS = [
   { key: "index", label: "首頁", href: "index.html" },
+  { key: "pi", label: "主持人", href: "pi.html" },
   { key: "research", label: "研究主題", href: "research.html" },
+  { key: "projects", label: "研究計畫", href: "projects.html" },
   { key: "publications", label: "成果發表", href: "publications.html" },
-  { key: "education", label: "教學資源", href: "education.html" },
   { key: "members", label: "團隊成員", href: "members.html" },
+  { key: "education", label: "教學資源", href: "education.html" },
   { key: "collaboration", label: "合作交流", href: "collaboration.html" },
   { key: "gallery", label: "活動花絮", href: "gallery.html" },
   { key: "resources", label: "開放資源", href: "resources.html" },
@@ -77,7 +79,7 @@ function renderHeader(activePage) {
 }
 
 function renderFooter() {
-  const quickLinks = NAV_ITEMS.slice(0, 8)
+  const quickLinks = NAV_ITEMS.slice(0, 10)
     .map((item) => `<li><a href="${item.href}">${item.label}</a></li>`)
     .join("");
 
