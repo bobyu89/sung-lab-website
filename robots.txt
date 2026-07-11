@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bobyu89.github.io/sung-lab-website/sitemap.xml
