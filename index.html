@@ -268,8 +268,9 @@
       const escapedDate = escapeHtml(item.date);
       const escapedCategory = escapeHtml(item.category);
       const escapedContent = escapeHtml(item.content);
-      const contentHtml = (typeof item.link === "string" && item.link.trim() !== "")
-        ? `<a href="${escapeHtml(item.link)}" target="_blank" rel="noopener">${escapedContent}</a>`
+      const safeLink = sanitizeExternalUrl(item.link);
+      const contentHtml = safeLink
+        ? `<a href="${escapeHtml(safeLink)}" target="_blank" rel="noopener noreferrer">${escapedContent}</a>`
         : escapedContent;
       return `
 <div class="news-row reveal" data-reveal-group="news" tabindex="0" role="button"

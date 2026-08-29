@@ -269,8 +269,9 @@
       const CATEGORY_EN = { "榮譽": "Honor", "發表": "Publication", "活動": "Event", "公告": "Notice" };
       const escapedCategory = escapeHtml(CATEGORY_EN[item.category] || item.category);
       const escapedContent = escapeHtml((item.content_en && item.content_en.trim()) ? item.content_en : item.content);
-      const contentHtml = (typeof item.link === "string" && item.link.trim() !== "")
-        ? `<a href="${escapeHtml(item.link)}" target="_blank" rel="noopener">${escapedContent}</a>`
+      const safeLink = sanitizeExternalUrl(item.link);
+      const contentHtml = safeLink
+        ? `<a href="${escapeHtml(safeLink)}" target="_blank" rel="noopener noreferrer">${escapedContent}</a>`
         : escapedContent;
       return `
 <div class="news-row reveal" data-reveal-group="news" tabindex="0" role="button"

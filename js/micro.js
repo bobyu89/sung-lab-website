@@ -9,6 +9,8 @@
    3. 章節標題圖示彈跳（scroll 觸發）
    4. 燈箱開啟縮放淡入
    5. 導覽列進場（每個瀏覽階段一次）
+   6. 閱讀進度與玻璃導覽列狀態
+   7. Hero 插畫呼吸漂浮
 
    anime.js 未載入或使用者偏好減少動態時，全部靜默跳過，網站照常運作。
    ========================================================================== */
@@ -235,12 +237,47 @@
     }
   }
 
+  function initScrollProgress() {
+    var header = document.querySelector(".site-header");
+    var bar = document.getElementById("scroll-progress-bar");
+    if (!header || !bar) return;
+    var ticking = false;
+    function update() {
+      var max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      var progress = Math.min(1, Math.max(0, window.scrollY / max));
+      bar.style.transform = "scaleX(" + progress + ")";
+      header.classList.toggle("is-scrolled", window.scrollY > 12);
+      ticking = false;
+    }
+    window.addEventListener("scroll", function () {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    }, { passive: true });
+    update();
+  }
+
+  function initHeroFloat() {
+    var art = document.querySelector(".hero-art");
+    if (!art) return;
+    animate(art, {
+      y: [0, -9, 0],
+      rotate: [-0.35, 0.35, -0.35],
+      duration: 6200,
+      loop: true,
+      ease: "inOutSine"
+    });
+  }
+
   function boot() {
     initEcgDraw();
     initHeroIntro();
     initIconPop();
     initLightboxPop();
     initNavIntro();
+    initScrollProgress();
+    initHeroFloat();
   }
 
   if (document.readyState === "loading") {

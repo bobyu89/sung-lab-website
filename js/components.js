@@ -137,8 +137,21 @@ function renderHeader(activePage) {
     </nav>
   </div>
   <div class="nav-backdrop" id="nav-backdrop" aria-hidden="true"></div>
+  <div class="scroll-progress" aria-hidden="true"><span id="scroll-progress-bar"></span></div>
 </header>`;
 }
+
+/* Allow only ordinary web links from editable external data sources. */
+function sanitizeExternalUrl(value) {
+  if (typeof value !== "string" || !value.trim()) return "";
+  try {
+    const url = new URL(value.trim(), window.location.href);
+    return url.protocol === "https:" || url.protocol === "http:" ? url.href : "";
+  } catch (_) {
+    return "";
+  }
+}
+window.sanitizeExternalUrl = sanitizeExternalUrl;
 
 function renderFooter() {
   const t = UI_STRINGS[SITE_LANG];
