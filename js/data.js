@@ -14,7 +14,7 @@ const SITE = {
   deptEn: "School of Nursing, National Defense Medical University",
   email: "sungcm@mail.ndmutsgh.edu.tw",
   phone: "02-87923100 分機 18765",
-  stats: { publications: 23, projects: 12, areas: 4, members: 3 } // members=null → 顯示「招募中」
+  stats: { publications: 26, projects: 15, areas: 4, members: 3 } // members=null → 顯示「招募中」
 };
 
 /* ==========================================================================
