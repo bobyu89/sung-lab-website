@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://bobyu89.github.io/sung-lab-website/sitemap.xml
+Sitemap: https://labsite-sites.shiftguard-navicare.workers.dev/sung-lab-website/sitemap.xml

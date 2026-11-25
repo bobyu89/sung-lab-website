@@ -63,7 +63,7 @@ const UI_STRINGS = {
     friendLinks: "友好連結",
     friendName: "智慧醫療轉譯及創新實驗室",
     friendSub: "賀彥中 助理教授",
-    friendHref: "https://bobyu89.github.io/ycho-lab-website/",
+    friendHref: "https://labsite-sites.shiftguard-navicare.workers.dev/ycho-lab-website/",
     navAria: "開啟導覽選單",
     back: "返回"
   },
@@ -76,7 +76,7 @@ const UI_STRINGS = {
     friendLinks: "Partner Labs",
     friendName: "Smart Health Translation & Innovation Lab",
     friendSub: "Dr. Yen-Chung Ho",
-    friendHref: "https://bobyu89.github.io/ycho-lab-website/en/",
+    friendHref: "https://labsite-sites.shiftguard-navicare.workers.dev/ycho-lab-website/en/",
     navAria: "Open navigation menu",
     back: "Back"
   }
