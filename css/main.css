@@ -2318,3 +2318,40 @@ body.lightbox-open {
   line-height: 1;
   transition: transform 0.2s ease;
 }
+
+/* 活動花絮：照片說明顯示在照片下方 */
+.photo-wall__caption {
+  display: block;
+  padding: 10px 14px 12px;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--white);
+  text-align: left;
+}
+
+/* 手機選單：頁首的毛玻璃效果會把固定位置的選單困在頁首高度裡，打開選單時先關掉 */
+body.nav-open .site-header {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+/* 手機、大字體：欄位不可被長內容撐破（聯絡表單、主持人介紹的 Email） */
+.contact-grid > *,
+.member-intro > * {
+  min-width: 0;
+}
+.form-field input,
+.form-field select,
+.form-field textarea {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+a[href^="mailto:"] {
+  overflow-wrap: anywhere;
+}
+
+/* labsite:text-size */
+html { font-size: 112.5%; }
+/* labsite:text-size:end */

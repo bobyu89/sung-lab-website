@@ -52,7 +52,9 @@ function initReveal() {
         }
       });
     },
-    { threshold: 0.15 }
+    // threshold 0 + bottom margin: tall blocks (a long publication list on a
+    // phone with large text) can never be 15% on screen, so they never appeared.
+    { threshold: 0, rootMargin: "0px 0px -12% 0px" }
   );
 
   elements.forEach((el) => observer.observe(el));

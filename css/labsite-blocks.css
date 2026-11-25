@@ -1,0 +1,571 @@
+/* LabSite 區塊（照片、相簿、動畫庫）v2：由 LabSite 編輯器產生，更新時會被覆寫。 */
+.ls-block {
+  padding: clamp(32px, 6vw, 72px) 0;
+}
+.ls-wrap {
+  width: min(1120px, 100% - 2 * clamp(16px, 4vw, 40px));
+  margin-inline: auto;
+}
+.ls-title {
+  margin: 0 0 clamp(16px, 2.5vw, 28px);
+}
+.ls-text {
+  max-width: 72ch;
+  margin: 0 0 clamp(16px, 2.5vw, 26px);
+  line-height: 1.85;
+  white-space: pre-line;
+}
+.ls-text-section .ls-text {
+  margin-bottom: 0;
+}
+.ls-photo {
+  margin: 0 auto;
+  max-width: 900px;
+}
+.ls-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+.ls-photo figcaption,
+.ls-album figcaption {
+  margin-top: 8px;
+  font-size: 0.9em;
+  line-height: 1.6;
+  opacity: 0.78;
+}
+.ls-album-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 14px;
+}
+.ls-album-masonry {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  columns: 3 220px;
+  column-gap: 14px;
+}
+.ls-album-masonry li {
+  break-inside: avoid;
+  margin-bottom: 14px;
+}
+.ls-album-carousel {
+  position: relative;
+}
+.ls-album-track {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 6px;
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+}
+.ls-album-track li {
+  flex: 0 0 min(78%, 520px);
+  scroll-snap-align: start;
+}
+.ls-album figure {
+  margin: 0;
+}
+.ls-album-open {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.ls-album-open img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 0.4s ease;
+}
+.ls-album-grid .ls-album-open img {
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+.ls-album-track .ls-album-open img {
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+.ls-album-open:hover img {
+  transform: scale(1.03);
+}
+.ls-album-open:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 3px;
+}
+.ls-album-nav {
+  position: absolute;
+  top: calc(50% - 22px);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 0;
+  background: rgba(255, 255, 255, 0.92);
+  color: #222;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
+}
+.ls-album-nav.prev {
+  left: 8px;
+}
+.ls-album-nav.next {
+  right: 8px;
+}
+.ls-album-empty {
+  opacity: 0.7;
+}
+.ls-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(10, 12, 12, 0.92);
+  display: grid;
+  grid-template-rows: 1fr auto;
+  place-items: center;
+  padding: 56px 64px 20px;
+  color: #fff;
+}
+.ls-lightbox img {
+  max-width: 100%;
+  max-height: calc(100vh - 150px);
+  object-fit: contain;
+  border-radius: 4px;
+}
+.ls-lightbox p {
+  margin: 12px 0 0;
+  text-align: center;
+  line-height: 1.6;
+}
+.ls-lightbox button {
+  position: absolute;
+  border: 0;
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+}
+.ls-lightbox button:focus-visible {
+  outline: 3px solid #fff;
+}
+.ls-lightbox .close {
+  top: 12px;
+  right: 12px;
+}
+.ls-lightbox .prev {
+  left: 10px;
+  top: calc(50% - 24px);
+}
+.ls-lightbox .next {
+  right: 10px;
+  top: calc(50% - 24px);
+}
+@media (max-width: 600px) {
+  .ls-lightbox {
+    padding: 56px 8px 16px;
+  }
+  .ls-lightbox .prev,
+  .ls-lightbox .next {
+    top: auto;
+    bottom: 14px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ls-album-open img {
+    transition: none;
+  }
+  .ls-album-track {
+    scroll-behavior: auto;
+  }
+}
+
+/* ---- 動畫庫：區塊進場（data-ls-anim）---- */
+@media (prefers-reduced-motion: no-preference) {
+  .ls-anim-on [data-ls-anim]:not(.ls-in) {
+    opacity: 0;
+  }
+  .ls-anim-on [data-ls-anim="rise"]:not(.ls-in) {
+    transform: translateY(28px);
+  }
+  .ls-anim-on [data-ls-anim="zoom"]:not(.ls-in) {
+    transform: scale(0.94);
+  }
+  .ls-anim-on [data-ls-anim="left"]:not(.ls-in) {
+    transform: translateX(-40px);
+  }
+  .ls-anim-on [data-ls-anim="right"]:not(.ls-in) {
+    transform: translateX(40px);
+  }
+  .ls-anim-on [data-ls-anim] {
+    transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .ls-anim-on [data-ls-anim="stagger"]:not(.ls-in) {
+    opacity: 1;
+  }
+  .ls-anim-on [data-ls-anim="stagger"] .ls-stagger > * {
+    transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .ls-anim-on [data-ls-anim="stagger"]:not(.ls-in) .ls-stagger > * {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+/* ---- 數字統計 ---- */
+.ls-stats {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 16px;
+}
+.ls-stat {
+  padding: 20px 16px;
+  border-radius: 12px;
+  background: rgba(127, 127, 127, 0.07);
+  text-align: center;
+  min-width: 0;
+}
+.ls-stat strong {
+  display: block;
+  font-size: 2.4em;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+.ls-stat span {
+  display: block;
+  margin-top: 6px;
+  opacity: 0.8;
+}
+
+/* ---- 時間軸 ---- */
+.ls-timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 28px;
+  position: relative;
+}
+.ls-timeline::before {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background: currentColor;
+  opacity: 0.2;
+  transform-origin: top;
+}
+.ls-timeline li {
+  position: relative;
+  padding: 0 0 22px;
+}
+.ls-timeline li::before {
+  content: "";
+  position: absolute;
+  left: -27px;
+  top: 6px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 3px solid currentColor;
+  background: #fff;
+  box-sizing: border-box;
+}
+.ls-timeline time {
+  display: block;
+  font-weight: 700;
+  opacity: 0.75;
+}
+.ls-timeline h3 {
+  margin: 4px 0;
+}
+.ls-timeline p {
+  margin: 0;
+  line-height: 1.75;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .ls-anim-on .ls-timeline-section:not(.ls-in) .ls-timeline::before {
+    transform: scaleY(0);
+  }
+  .ls-anim-on .ls-timeline::before {
+    transition: transform 1.2s ease;
+  }
+}
+
+/* ---- 分頁標籤 ---- */
+.ls-tab-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+  border-bottom: 2px solid rgba(127, 127, 127, 0.2);
+}
+.ls-tab-buttons button {
+  border: 0;
+  background: none;
+  padding: 10px 14px;
+  font: inherit;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  opacity: 0.7;
+}
+.ls-tab-buttons button[aria-selected="true"] {
+  border-bottom-color: currentColor;
+  opacity: 1;
+  font-weight: 700;
+}
+.ls-tab-buttons button:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 2px;
+}
+.ls-tabs-ready .ls-tab-title {
+  display: none;
+}
+.ls-tabs-ready .ls-tab[hidden] {
+  display: none;
+}
+.ls-tab-body {
+  line-height: 1.85;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .ls-tabs-ready .ls-tab:not([hidden]) {
+    animation: ls-fade-in 0.35s ease;
+  }
+}
+@keyframes ls-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+/* ---- 常見問題（折疊）---- */
+.ls-faq {
+  border-bottom: 1px solid rgba(127, 127, 127, 0.25);
+}
+.ls-faq summary {
+  cursor: pointer;
+  padding: 16px 32px 16px 0;
+  font-weight: 700;
+  list-style: none;
+  position: relative;
+}
+.ls-faq summary::-webkit-details-marker {
+  display: none;
+}
+.ls-faq summary::after {
+  content: "+";
+  position: absolute;
+  right: 4px;
+  top: 12px;
+  font-size: 1.4em;
+  line-height: 1;
+  transition: transform 0.25s ease;
+}
+.ls-faq[open] summary::after {
+  transform: rotate(45deg);
+}
+.ls-faq p {
+  margin: 0 0 16px;
+  line-height: 1.85;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .ls-faq[open] p {
+    animation: ls-fade-in 0.3s ease;
+  }
+}
+
+/* ---- 跑馬燈 ---- */
+.ls-marquee {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.ls-marquee-track {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 14px;
+  width: max-content;
+}
+.ls-marquee-track li {
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(127, 127, 127, 0.3);
+  white-space: nowrap;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .ls-marquee-on .ls-marquee-track {
+    animation: ls-marquee var(--ls-marquee-time, 30s) linear infinite;
+  }
+  .ls-marquee:hover .ls-marquee-track,
+  .ls-marquee:focus-within .ls-marquee-track {
+    animation-play-state: paused;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ls-marquee-track {
+    flex-wrap: wrap;
+    width: auto;
+  }
+}
+@keyframes ls-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ---- 進度條 ---- */
+.ls-progress {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 16px;
+}
+.ls-progress li {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 6px 12px;
+}
+.ls-progress li::after {
+  content: "";
+  grid-column: 1 / -1;
+  height: 10px;
+  border-radius: 999px;
+  background: linear-gradient(currentColor, currentColor) 0 0 / var(--ls-value, 0%) 100% no-repeat, rgba(127, 127, 127, 0.18);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .ls-progress li::after {
+    transition: background-size 1.2s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+}
+
+/* ---- 浮起卡片 ---- */
+.ls-cards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr));
+  gap: 18px;
+}
+.ls-card {
+  padding: 22px;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.07);
+  min-width: 0;
+}
+.ls-card img {
+  width: 48px;
+  height: 48px;
+  display: block;
+  margin-bottom: 10px;
+}
+.ls-card h3 {
+  margin: 0 0 8px;
+}
+.ls-card p {
+  margin: 0;
+  line-height: 1.75;
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .ls-card {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .ls-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
+  }
+}
+
+/* ---- 圖文分割 ---- */
+.ls-split {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+  gap: clamp(20px, 4vw, 48px);
+  align-items: center;
+}
+.ls-split figure {
+  margin: 0;
+}
+.ls-split img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 14px;
+}
+.ls-split p {
+  line-height: 1.85;
+}
+.ls-button {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 12px 22px;
+  border-radius: 999px;
+  background: currentColor;
+  text-decoration: none;
+  font-weight: 700;
+}
+.ls-button span {
+  color: #fff;
+}
+
+/* ---- 引言 ---- */
+.ls-quote {
+  margin: 0 auto;
+  max-width: 760px;
+  text-align: center;
+  font-size: 1.2em;
+  line-height: 1.8;
+}
+.ls-quote p::before {
+  content: "“";
+  display: block;
+  font-size: 3em;
+  line-height: 0.6;
+  opacity: 0.25;
+}
+.ls-quote cite {
+  display: block;
+  margin-top: 12px;
+  font-size: 0.85em;
+  font-style: normal;
+  opacity: 0.75;
+}
+
+/* ---- 行動呼籲橫幅 ---- */
+.ls-cta {
+  padding: clamp(28px, 5vw, 48px);
+  border-radius: 18px;
+  background: rgba(127, 127, 127, 0.08);
+  text-align: center;
+}
+.ls-cta h2 {
+  margin: 0 0 8px;
+}
+.ls-cta p {
+  margin: 0 0 12px;
+  line-height: 1.8;
+}

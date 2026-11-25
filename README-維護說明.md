@@ -190,7 +190,7 @@ const SITE = {
 
 網站目前是純靜態網頁（不需要資料庫、不需要後端伺服器），已採用 **GitHub Pages** 發布：
 
-- 正式網址：`https://bobyu89.github.io/sung-lab-website/`
+- 正式網址：`https://labsite-sites.shiftguard-navicare.workers.dev/sung-lab-website/`
 - GitHub repo：`https://github.com/bobyu89/sung-lab-website`
 - **之後每次更新內容**（改了 `js/data.js` 或任何檔案）：在專案資料夾執行
   ```
