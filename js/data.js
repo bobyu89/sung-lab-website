@@ -32,7 +32,8 @@ const CONFIG = {
    Content is verbatim from the lab's real announcements/publications.
    ========================================================================== */
 const FALLBACK_NEWS = [
-  { date: "2026-08-11", category: "公告", content: "研究生李妍鋅論文計畫口試將於 8 月 11 日（二）11:00–13:00 舉行。", content_en: "Graduate student Yen-Hsin Lee's thesis proposal defense: Tuesday, Aug 11, 11:00-13:00.", link: "" },
+  { date: "2026-10-26", category: "發表", content: "宋建美老師、賀彥中老師、碩二研究生游明勳、李妍鋅及碩一研究生劉庭安通過第53屆國軍軍醫學術研討會海報發表", link: "" },
+  { date: "2026-08-11", category: "公告", content: "研究生李妍鋅於115年 8 月 11 日通過論文計畫口試。", link: "" },
   { date: "2026-08-07", category: "公告", content: "研究生游明勳論文計畫口試將於 8 月 7 日（五）11:00–13:00 舉行。", content_en: "Graduate student Ming-Hsun Yu's thesis proposal defense: Friday, Aug 7, 11:00-13:00.", link: "" },
   { date: "2026-07-06", category: "榮譽", content: "115 年度教育部教學實踐研究計畫「運用自適應學習與多重鷹架式策略之精準臨床推理教學模式融入『專科護理師角色與發展』課程之成效探討」獲核定補助", content_en: "The 2026 MOE Teaching Practice Research grant on a precision clinical-reasoning teaching model using adaptive learning and multi-layered scaffolding has been approved.", link: "" },
   { date: "2026-01-15", category: "發表", content: "社區健康照護護理師臨床與成本效益之統合分析刊登於 International Journal of Nursing Studies", content_en: "Meta-analysis of the clinical effectiveness and cost-effectiveness of primary community health care nurses published in the International Journal of Nursing Studies.", link: "" },
